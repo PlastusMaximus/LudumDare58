@@ -1,0 +1,23 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="LudumDare58"
+config/description="A [] Game for the Ludum Dare 58 Game Jam Compo category"
+config/version="1.0.0"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="res://assets/visual/icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
