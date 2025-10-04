@@ -13,8 +13,14 @@ config_version=5
 config/name="LudumDare58"
 config/description="A [] Game for the Ludum Dare 58 Game Jam Compo category"
 config/version="1.0.0"
+run/main_scene="uid://dpgcc4nrtwyqn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://assets/visual/icon.svg"
+
+[autoload]
+
+GameManagerGlobal="*res://scenes/managers/game_manager.tscn"
+StatManagerGlobal="*res://scripts/managers/stat_manager.gd"
 
 [display]
 

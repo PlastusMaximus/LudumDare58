@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://yy864im71bdh"]
+
+[ext_resource type="Script" uid="uid://dgnfiptp1gdha" path="res://scripts/ui/menus/settings/settings.gd" id="1_5p8wc"]
+[ext_resource type="PackedScene" uid="uid://c7xkoufr2uadr" path="res://scenes/ui/menus/settings/slider_setting.tscn" id="2_r6d6q"]
+
+[node name="Settings" type="Control"]
+custom_minimum_size = Vector2(350, 1080)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5p8wc")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+custom_minimum_size = Vector2(350, 1080)
+layout_mode = 1
+offset_right = 77.0
+offset_bottom = 31.0
+current_tab = 0
+clip_tabs = false
+
+[node name="Sound" type="Panel" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Sound" type="BoxContainer" parent="TabContainer/Sound"]
+layout_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/Sound"]
+layout_mode = 2
+
+[node name="Music_Setting" parent="TabContainer/Sound/Sound/VBoxContainer" instance=ExtResource("2_r6d6q")]
+layout_mode = 2
+setting_name = "Music"
+
+[node name="SFX_Setting" parent="TabContainer/Sound/Sound/VBoxContainer" instance=ExtResource("2_r6d6q")]
+layout_mode = 2
+setting_name = "Game"
+
+[node name="Hide" type="Button" parent="TabContainer/Sound/Sound/VBoxContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+text = "Hide Settings"
+
+[connection signal="value_changed" from="TabContainer/Sound/Sound/VBoxContainer/Music_Setting" to="." method="_on_music_setting_value_changed"]
+[connection signal="value_changed" from="TabContainer/Sound/Sound/VBoxContainer/SFX_Setting" to="." method="_on_sfx_setting_value_changed"]
+[connection signal="pressed" from="TabContainer/Sound/Sound/VBoxContainer/Hide" to="." method="_on_hide_pressed"]
