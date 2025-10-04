@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cauuyn3ddtg0p"]
+[gd_scene load_steps=6 format=3 uid="uid://cauuyn3ddtg0p"]
 
+[ext_resource type="Script" uid="uid://dwe7nhmsagqcm" path="res://scripts/pipe.gd" id="1_arpqm"]
 [ext_resource type="Texture2D" uid="uid://e3f2x1imeyyy" path="res://assets/visual/chest.png" id="1_oii8l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w8frs"]
@@ -16,7 +17,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
 size = Vector2(30, 15)
 
-[node name="Chest" type="StaticBody2D" groups=["Chest"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_arpqm"]
+radius = 32.003906
+
+[node name="Pipe" type="StaticBody2D" groups=["Pipe"]]
+script = ExtResource("1_arpqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w8frs")
@@ -24,3 +29,11 @@ sprite_frames = SubResource("SpriteFrames_w8frs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_w7c3h")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+position = Vector2(0, 0.5)
+shape = SubResource("CircleShape2D_arpqm")
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
