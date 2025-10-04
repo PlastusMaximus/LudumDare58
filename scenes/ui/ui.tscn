@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg1df5v7005o5"]
+
+[ext_resource type="Script" uid="uid://c2in7mg3y1rhd" path="res://scripts/ui/ui.gd" id="1_u7n8c"]
+[ext_resource type="Theme" uid="uid://b7k60gus3bkef" path="res://assets/visual/ui_theme.tres" id="2_f5cxw"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u7n8c")
+
+[node name="Stats" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HP" type="RichTextLabel" parent="Stats"]
+clip_contents = false
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("2_f5cxw")
+bbcode_enabled = true
+text = "[wave]HP: 5[/wave]"
+
+[node name="Rope" type="RichTextLabel" parent="Stats"]
+clip_contents = false
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("2_f5cxw")
+bbcode_enabled = true
+text = "[wave]Rope: 5m[/wave]"
+
+[node name="Coins" type="RichTextLabel" parent="Stats"]
+clip_contents = false
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("2_f5cxw")
+bbcode_enabled = true
+text = "[wave]Coins: 0[/wave]"
+
+[node name="TimeLeft" type="RichTextLabel" parent="Stats"]
+clip_contents = false
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("2_f5cxw")
+bbcode_enabled = true
+text = "[wave]Time left: 0[/wave]"

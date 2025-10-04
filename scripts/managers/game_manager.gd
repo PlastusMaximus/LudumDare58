@@ -1,6 +1,7 @@
 class_name GameManager extends Node
 
 @onready var ui_layer: CanvasLayer = $UI_Layer
+@onready var ui: Control = $UI_Layer/UI
 @onready var pause_menu: PauseMenu = $UI_Layer/PauseMenu
 @onready var settings: Settings = $UI_Layer/Settings
 @onready var music_manager: MusicManager = $UI_Layer/MusicManager

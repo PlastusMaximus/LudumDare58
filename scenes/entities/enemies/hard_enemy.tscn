@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bm6p8g7oh80et"]
 
-[ext_resource type="Script" uid="uid://cmlg4sfvv8gv3" path="res://enemy.gd" id="1_c5626"]
+[ext_resource type="Script" uid="uid://cmlg4sfvv8gv3" path="res://scripts/entities/enemy.gd" id="1_c5626"]
 [ext_resource type="Texture2D" uid="uid://coyo625obfqfq" path="res://assets/visual/hard_enemy.png" id="2_c5626"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5uy6h"]
@@ -25,7 +25,9 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_c5626")
 speed = 50
+collection_speed = 100
 damage = 3
+worth = 3
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)

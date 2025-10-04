@@ -5,7 +5,6 @@ const ROPE: PackedScene = preload("uid://dpy6htfcsxbiu")
 
 ##The moving speed of the player
 @export var speed: int = 100
-@export var hp: int = 5
 @export var can_make_rope: bool = true
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
@@ -54,21 +53,25 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and can_make_rope:
 		var interactor: Node = interaction_ray_cast.get_collider()
 		if current_rope == null:
-			if get_tree().get_nodes_in_group("Border").has(interactor):
+			if interactor is DeadHook:
 				current_rope = ROPE.instantiate()
 				get_parent().add_child(current_rope)
-				current_rope.start_rope_at_border(global_position)
+				current_rope.start_rope(interactor)
 		else:
-			current_rope.add_knot_to_rope(global_position)
-			if get_tree().get_nodes_in_group("Border").has(interactor):
-				current_rope.end_rope_at_border(global_position)
-				current_rope = null
+			if interactor is DeadHook:
+				if current_rope.start_side == interactor.side:
+					current_rope.end_rope(interactor)
+					current_rope = null
+				else:
+					current_rope.add_knot_to_rope(current_rope.determine_dead_hook_position(interactor))
+			else:
+				current_rope.add_knot_to_rope(global_position)
 
 
 func _on_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:
-		if hp > 0:
-			hp -= body.damage
+		if StatManagerGlobal.hp > 0:
+			StatManagerGlobal.hp -= body.damage
 		else:
 			get_parent().lost.emit()
 			GameManagerGlobal.quit_game()

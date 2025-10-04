@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dlukhtdc5xlsr"]
 
 [ext_resource type="Texture2D" uid="uid://2no52g0bxi7i" path="res://assets/visual/player.png" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://xgly6ivcsmm1" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://xgly6ivcsmm1" path="res://scripts/entities/player.gd" id="1_g2els"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w7c3h"]
 animations = [{
@@ -68,6 +68,7 @@ autoplay = "idle"
 shape = SubResource("CapsuleShape2D_w7c3h")
 
 [node name="InteractionRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 15)
 
 [node name="Area" type="Area2D" parent="."]
 

@@ -11,6 +11,7 @@ enum MovementStates {
 @export var speed: int = 150
 @export var collection_speed: int = 300
 @export var damage: int = 1
+@export var worth: int = 1
 @export var movement: MovementStates = MovementStates.STILL
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
@@ -84,4 +85,7 @@ func hover_tween() ->  Tween:
 func _on_collision_area_body_entered(body: Node2D) -> void:
 	if (body is Enemy and body != self) or body is Pipe:
 		rotation_degrees += 180
+	
+	if get_tree().get_nodes_in_group("Border").has(body):
+		rotation_degrees += randi_range(135,225)
 	

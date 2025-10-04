@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ly3n4ywnpm82"]
 
-[ext_resource type="Script" uid="uid://cmlg4sfvv8gv3" path="res://enemy.gd" id="1_mt88q"]
+[ext_resource type="Script" uid="uid://cmlg4sfvv8gv3" path="res://scripts/entities/enemy.gd" id="1_mt88q"]
 [ext_resource type="Texture2D" uid="uid://dp75mnnxq7hbg" path="res://assets/visual/easy_enemy.png" id="2_83dhn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5uy6h"]

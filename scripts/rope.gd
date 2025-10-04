@@ -1,9 +1,8 @@
 class_name Rope extends Line2D
 
-const HOOK: PackedScene = preload("uid://c1lecwa7vgvb1")
-
-
 signal done()
+
+@export var start_side: DeadHook.Sides
 
 @onready var rope_body: StaticBody2D = $RopeBody
 
@@ -14,17 +13,15 @@ func _ready() -> void:
 	done.connect(_on_done)
 
 
-func start_rope_at_border(border_position: Vector2) -> void:
-	add_point(border_position)
-	var start_hook: Hook = HOOK.instantiate()
-	start_hook.global_position = border_position
-	level.hooks.add_child(start_hook)
-	add_point(border_position)
+func start_rope(dead_hook: DeadHook) -> void:
+	start_side = dead_hook.side
+	var start_position: Vector2 = determine_dead_hook_position(dead_hook)
+	add_point(start_position)
+	add_point(start_position)
 
-func end_rope_at_border(border_position: Vector2) -> void:
-	var end_hook: Hook = HOOK.instantiate()
-	end_hook.global_position = border_position
-	level.hooks.add_child(end_hook)
+func end_rope(dead_hook: DeadHook) -> void:
+	var end_position: Vector2 = determine_dead_hook_position(dead_hook)
+	add_point(end_position)
 	done.emit()
 
 func add_knot_to_rope(knot_position: Vector2) -> void:
@@ -39,7 +36,19 @@ func add_knot_to_rope(knot_position: Vector2) -> void:
 	fixated_knot_collision_shape.shape = rope_collision
 	
 	rope_body.add_child(fixated_knot_collision_shape)
-	
+
+func determine_dead_hook_position(dead_hook: DeadHook) -> Vector2:
+	var new_position: Vector2 = dead_hook.global_position
+	match dead_hook.side:
+		DeadHook.Sides.FLOOR:
+			new_position += Vector2(0,-5)
+		DeadHook.Sides.CEILING:
+			new_position += Vector2(0,5)
+		DeadHook.Sides.LEFT_WALL:
+			new_position += Vector2(5,0)
+		DeadHook.Sides.RIGHT_WALL:
+			new_position += Vector2(-5,0)
+	return new_position
 
 func _on_done() -> void:
 	closed = true

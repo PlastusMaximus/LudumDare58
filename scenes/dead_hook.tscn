@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c87lxb0i7fp4k"]
+
+[ext_resource type="Script" uid="uid://c7hpefnt2lxy8" path="res://scripts/dead_hook.gd" id="1_0glt3"]
+[ext_resource type="Texture2D" uid="uid://cx6qa8kqnrm86" path="res://assets/visual/dead_hook.png" id="1_futm0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0glt3"]
+size = Vector2(14, 5)
+
+[node name="DeadHook" type="StaticBody2D" groups=["DeadHooks"]]
+script = ExtResource("1_0glt3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_futm0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_0glt3")
