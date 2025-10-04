@@ -4,6 +4,9 @@ signal consumption_area_added(polygon: CollisionPolygon2D)
 
 @onready var consumption_scan: Area2D = $ConsumptionScan
 @onready var collection_area: NavigationRegion2D = $CollectionArea
+@onready var enemies: Node2D = $Enemies
+@onready var hooks: Node2D = $Hooks
+
 
 var player: Player
 var pipe: Pipe
@@ -29,5 +32,13 @@ func _on_consumption_scan_body_entered(body: Node2D) -> void:
 		body.stop_collecting()
 		consumption_scan.remove_child(consumption_scan.get_child(0)) 
 		get_tree().get_first_node_in_group("Rope").queue_free()
+		for hook: Hook in hooks.get_children():
+			hook.queue_free()
 	if body is Enemy:
 		body.is_collected = true
+
+
+func _on_border_area_body_entered(body: Node2D) -> void:
+	pass
+	#if body is Enemy:
+		#body.global_rotation = player.global_position.angle_to_point(body.position)

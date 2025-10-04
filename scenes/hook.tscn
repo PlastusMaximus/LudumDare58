@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1lecwa7vgvb1"]
+
+[ext_resource type="Script" uid="uid://cmh8prunf656n" path="res://scripts/hook.gd" id="1_lmb2r"]
+[ext_resource type="Texture2D" uid="uid://bqpnmqvjjhusw" path="res://assets/visual/hook.png" id="1_p5w6b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmb2r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p5w6b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qfoqi"]
+radius = 4.0
+height = 16.0
+
+[node name="Hook" type="StaticBody2D" groups=["Hook"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_lmb2r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lmb2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_qfoqi")

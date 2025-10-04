@@ -1,5 +1,8 @@
 class_name Rope extends Line2D
 
+const HOOK: PackedScene = preload("uid://c1lecwa7vgvb1")
+
+
 signal done()
 
 @onready var rope_body: StaticBody2D = $RopeBody
@@ -13,13 +16,20 @@ func _ready() -> void:
 
 func start_rope_at_border(border_position: Vector2) -> void:
 	add_point(border_position)
+	var start_hook: Hook = HOOK.instantiate()
+	start_hook.global_position = border_position
+	level.hooks.add_child(start_hook)
 	add_point(border_position)
+
+func end_rope_at_border(border_position: Vector2) -> void:
+	var end_hook: Hook = HOOK.instantiate()
+	end_hook.global_position = border_position
+	level.hooks.add_child(end_hook)
+	done.emit()
 
 func add_knot_to_rope(knot_position: Vector2) -> void:
 	var last_knot: Vector2 = points.get(points.size()-2)
-	print(points)
 	add_point(knot_position)
-	print(points)
 	
 	var rope_collision = SegmentShape2D.new()
 	rope_collision.a = knot_position

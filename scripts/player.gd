@@ -63,5 +63,10 @@ func _input(event: InputEvent) -> void:
 		else:
 			current_rope.add_knot_to_rope(global_position)
 			if get_tree().get_nodes_in_group("Border").has(interactor):
-				current_rope.done.emit()
+				current_rope.end_rope_at_border(global_position)
 				current_rope = null
+
+
+func _on_area_body_entered(body: Node2D) -> void:
+	if get_tree().get_nodes_in_group("Enemies").has(body):
+		queue_free()
