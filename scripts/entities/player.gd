@@ -19,10 +19,6 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 		animated_sprite.play("idle")
-	
-	if current_rope != null:
-		var points: PackedVector2Array = current_rope.points
-		current_rope.set_point_position(points.size()-1, global_position)
 
 ##Applies player movement for a given input and returns "true" afterwards.
 ##Returns false if no movement has been applied.

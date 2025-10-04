@@ -7,7 +7,6 @@ const DEAD_HOOK_TILES: Array[Vector2] = [
 	Vector2(1,0), Vector2(0,1), Vector2(2,1), Vector2(1,2),
 ]
 
-
 signal consumption_area_added(polygon: CollisionPolygon2D)
 signal won()
 signal lost()

@@ -82,10 +82,6 @@ func hover_tween() ->  Tween:
 	return tween
 
 
-func _on_collision_area_body_entered(body: Node2D) -> void:
-	if (body is Enemy and body != self) or body is Pipe:
-		rotation_degrees += 180
-	
-	if get_tree().get_nodes_in_group("Border").has(body):
-		rotation_degrees += randi_range(135,225)
+func _on_collision_area_body_entered(_sbody: Node2D) -> void:
+	rotation_degrees += randi_range(135,225)
 	

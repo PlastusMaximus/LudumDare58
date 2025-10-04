@@ -7,17 +7,26 @@ signal done()
 @onready var rope_body: StaticBody2D = $RopeBody
 
 var level: Level
+var player: Player
 
 func _ready() -> void:
 	level = get_parent()
+	player = get_tree().get_first_node_in_group("Player")
 	done.connect(_on_done)
+
+func _process(delta: float) -> void:
+	set_point_position(points.size()-1, player.global_position)
+	
+	var collision: CollisionShape2D = rope_body.get_child(rope_body.get_children().size()-1) 
+	var segment: SegmentShape2D = collision.shape
+	segment.b = player.global_position
 
 
 func start_rope(dead_hook: DeadHook) -> void:
 	start_side = dead_hook.side
 	var start_position: Vector2 = determine_dead_hook_position(dead_hook)
 	add_point(start_position)
-	add_point(start_position)
+	add_knot_to_rope(start_position)
 
 func end_rope(dead_hook: DeadHook) -> void:
 	var end_position: Vector2 = determine_dead_hook_position(dead_hook)
@@ -25,12 +34,11 @@ func end_rope(dead_hook: DeadHook) -> void:
 	done.emit()
 
 func add_knot_to_rope(knot_position: Vector2) -> void:
-	var last_knot: Vector2 = points.get(points.size()-2)
 	add_point(knot_position)
 	
 	var rope_collision = SegmentShape2D.new()
 	rope_collision.a = knot_position
-	rope_collision.b = last_knot
+	rope_collision.b = player.global_position
 	
 	var fixated_knot_collision_shape = CollisionShape2D.new()
 	fixated_knot_collision_shape.shape = rope_collision
