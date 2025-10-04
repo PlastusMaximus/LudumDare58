@@ -26,7 +26,7 @@ func _disappear_tween() -> Tween:
 
 func _on_start_pressed() -> void:
 	await _disappear_tween().finished
-	GameManagerGlobal.load_scene(MAIN_MENU)
+	GameManagerGlobal.load_scene("res://scenes/level.tscn")
 
 
 func _on_settings_pressed() -> void:

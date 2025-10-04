@@ -50,7 +50,7 @@ func _on_settings_pressed() -> void:
 
 func _on_main_menu_pressed() -> void:
 	GameManagerGlobal.unpause_game()
-	GameManagerGlobal.load_scene("res://scenes/ui/menu/main_menu.tscn")
+	GameManagerGlobal.load_scene("res://scenes/ui/menus/main_menu.tscn")
 
 func _on_quit_pressed() -> void:
 	GameManagerGlobal.unpause_game()
