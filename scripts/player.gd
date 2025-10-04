@@ -5,16 +5,14 @@ const ROPE: PackedScene = preload("uid://dpy6htfcsxbiu")
 
 ##The moving speed of the player
 @export var speed: int = 100
+@export var hp: int = 5
+@export var can_make_rope: bool = true
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
 
-var camera: Camera2D
 var current_rope: Rope
-
-func _ready() -> void:
-	camera = get_tree().get_first_node_in_group("Camera")
 
 func _physics_process(_delta: float) -> void:
 	if _player_movement():
@@ -53,7 +51,7 @@ func _player_movement() -> bool:
 	return false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") and can_make_rope:
 		var interactor: Node = interaction_ray_cast.get_collider()
 		if current_rope == null:
 			if get_tree().get_nodes_in_group("Border").has(interactor):
@@ -68,5 +66,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_area_body_entered(body: Node2D) -> void:
-	if get_tree().get_nodes_in_group("Enemies").has(body):
-		queue_free()
+	if body is Enemy:
+		if hp > 0:
+			hp -= body.damage
+		else:
+			get_parent().lost.emit()
+			GameManagerGlobal.quit_game()
+			queue_free()

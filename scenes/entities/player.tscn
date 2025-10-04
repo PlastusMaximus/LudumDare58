@@ -69,13 +69,6 @@ shape = SubResource("CapsuleShape2D_w7c3h")
 
 [node name="InteractionRayCast" type="RayCast2D" parent="."]
 
-[node name="Camera" type="Camera2D" parent="." groups=["Camera"]]
-zoom = Vector2(5, 5)
-limit_left = 0
-limit_top = 0
-limit_right = 1920
-limit_bottom = 1080
-
 [node name="Area" type="Area2D" parent="."]
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Area"]

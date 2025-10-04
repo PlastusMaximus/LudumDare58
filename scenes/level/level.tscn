@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccyn2jakodxhi"]
+[gd_scene load_steps=6 format=3 uid="uid://ccyn2jakodxhi"]
 
-[ext_resource type="PackedScene" uid="uid://dlukhtdc5xlsr" path="res://scenes/player.tscn" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://dlukhtdc5xlsr" path="res://scenes/entities/player.tscn" id="1_w7c3h"]
 [ext_resource type="Script" uid="uid://cmksndmgxqlw8" path="res://scripts/level.gd" id="1_w8frs"]
 [ext_resource type="PackedScene" uid="uid://cauuyn3ddtg0p" path="res://scenes/pipe.tscn" id="2_w8frs"]
-[ext_resource type="PackedScene" uid="uid://ly3n4ywnpm82" path="res://scenes/enemy.tscn" id="4_mx8sn"]
 
 [sub_resource type="GDScript" id="GDScript_w8frs"]
 script/source = "class_name ConsumptionScan extends Area2D
@@ -44,27 +43,6 @@ script = SubResource("GDScript_w8frs")
 navigation_polygon = SubResource("NavigationPolygon_mx8sn")
 
 [node name="Enemies" type="Node2D" parent="."]
-
-[node name="Enemy" parent="Enemies" instance=ExtResource("4_mx8sn")]
-position = Vector2(947, 917)
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource("4_mx8sn")]
-position = Vector2(1062, 998)
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource("4_mx8sn")]
-position = Vector2(833, 976)
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource("4_mx8sn")]
-position = Vector2(782, 1061)
-
-[node name="Enemy5" parent="Enemies" instance=ExtResource("4_mx8sn")]
-position = Vector2(1137, 852)
-
-[node name="Enemy6" parent="Enemies" instance=ExtResource("4_mx8sn")]
-position = Vector2(867, 804)
-
-[node name="Enemy7" parent="Enemies" instance=ExtResource("4_mx8sn")]
-position = Vector2(1309, 936)
 
 [node name="Hooks" type="Node2D" parent="."]
 
