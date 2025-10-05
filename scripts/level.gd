@@ -15,8 +15,6 @@ signal lost()
 @export_range(0,9) var easy_enemies: int = 3
 @export_range(0,9) var medium_enemies: int = 0
 @export_range(0,9) var hard_enemies: int = 0
-@export_range(0,2) var allowed_movement_states = 2
-@export var randomized_spawn: bool = true
 
 @onready var border: TileMapLayer = $Border
 @onready var consumption_scan: Area2D = $ConsumptionScan

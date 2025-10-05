@@ -11,6 +11,7 @@ class_name GameManager extends Node
 
 var enemy_movements: Dictionary[Enemy, Enemy.MovementStates] = {}
 var shop_open: bool = false
+var dialogue_box_open: bool = false
 
 ##Hides every UI element and then quits the game
 func quit_game() -> void:
@@ -31,6 +32,7 @@ func open_shop_in_endless_mode() -> void:
 ##Hides every UI element and then loads the selected scene
 func load_scene(scene_path: String) -> void:
 	_hide_ui()
+	dialogue_box.level_disappear_tween()
 	load_manager.load_scene(scene_path)
 
 ##Hides only the settings (dialogue and microgame boxes have to stay visible) and then pauses the game
@@ -72,11 +74,13 @@ func slushie_freeze_enemies() -> void:
 	unfreeze_enemies_in_endless_mode()
 
 func start_dialogue() -> void:
+	dialogue_box_open = true
 	freeze_enemies_in_endless_mode()
 	dialogue_box.clear_dialogue_box()
 	await dialogue_box.appear_tween().finished
 	dialogue_box.set_dialogue(StatManagerGlobal.level)
 	dialogue_box.put_next_line()
 	await dialogue_box.dialogue_finished
+	dialogue_box_open = false
 	unfreeze_enemies_in_endless_mode()
 	

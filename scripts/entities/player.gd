@@ -45,12 +45,13 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
-		animated_sprite.play("idle")
+		if not GameManagerGlobal.dialogue_box_open:
+			animated_sprite.play("idle")
 
 ##Applies player movement for a given input and returns "true" afterwards.
 ##Returns false if no movement has been applied.
 func _player_movement() -> bool:
-	if GameManagerGlobal.shop_open:
+	if GameManagerGlobal.shop_open or GameManagerGlobal.dialogue_box_open:
 		return false
 	elif Input.is_action_pressed("walk_up"):
 		velocity = Vector2(0, -speed)
@@ -114,6 +115,16 @@ func _hurt_tween() -> Tween:
 	tween.tween_property(self, "modulate", Color.WHITE, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
 	return tween
 
+func _die_tween() -> Tween:
+	var tween: Tween = create_tween().set_loops(9)
+	tween.tween_property(self, "modulate", Color.RED, .1).set_trans(Tween.TRANS_LINEAR).from(Color.WHITE)
+	tween.tween_property(self, "modulate", Color.TRANSPARENT, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
+	tween.tween_property(self, "modulate", Color.WHITE, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
+	
+	var die_tween: Tween = create_tween()
+	die_tween.tween_property(self, "scale", Vector2.ZERO, 1).set_trans(Tween.TRANS_LINEAR).from_current()
+	return die_tween
+
 func _on_area_body_entered(body: Node2D) -> void:
 	if body is Enemy and invincible.is_stopped():
 		invincible.start()
@@ -121,6 +132,7 @@ func _on_area_body_entered(body: Node2D) -> void:
 		if StatManagerGlobal.hp - StatManagerGlobal.depleted_hp > 0:
 			StatManagerGlobal.depleted_hp += body.damage
 		else:
+			await _die_tween().finished
 			get_parent().lost.emit()
 			GameManagerGlobal.quit_game()
 			queue_free()

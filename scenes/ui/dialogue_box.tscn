@@ -14,6 +14,20 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_xg44k")
 
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1144.8889
+offset_top = -671.0
+offset_right = 1306.6667
+offset_bottom = 708.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Dialogue" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1

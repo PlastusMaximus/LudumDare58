@@ -1,11 +1,88 @@
 {
-	"0" : ["This is the tutorial"],
-	"1" : ["This is level 1", "Test", "Test2", "Test3"],
-	"2" : ["This is level 2"],
-	"3" : ["This is level 3","udmantimlern", "dsrunets"],
-	"4" : ["This is level 4", "Test", "Test2", "Test3"],
-	"5" : ["This is level 5","tisrnez"],
-	"6" : ["This is level 6","udmantimlern", "dsrunets"],
-	"7" : ["This is level 7", "Test", "Test2", "Test3"],
-	"8" : ["This is level 8", "I can't believe I actually did it!"],
+	"0" : [
+		"\"Come on Sew\", they said...",
+		"\"Get a souvenir too\", they said...",
+		"\"Everyone's getting one!\"",
+		"You know what? Fine! I'll get one!",
+		"But don't expect me to just get a boring rope.",
+		"NO!",
+		"I will get the BEST souvenir of them all!",
+		"The BEST souvenir that a suspicious 3€ rope can get me!",
+		"Alright then.",
+		"What is this note?",
+		"Instructions? FOR A ROPE?!",
+		 "Why would you need INSTRUCTIONS for a ROPE???", 
+		"Uh huh...", 
+		"Uh...", 
+		"Hm...", 
+		"So there's magic now aswell?", 
+		"\"Use this magic RopeTM at leisure for the best RopeTM experience\"", 
+		"...", 
+		"Ah, finally something useful!", 
+		"\"Put the RopeTM around an area. This will enchant the objects inside the area, making them move wherever you want them\"", 
+		"That's an ability I will put to use!", 
+		"I want to use the pipe to suck in the... things. So I'll need to sourround the pipe with the rope.",
+		"Because then I can wish for everything to go down the drain.",
+		"I won't read the rest of the instructions", 
+		"They just tell me how to apply the rope at surfaces", 
+		"I've been working in the sewers for 1300 years!", 
+		"I practically built this nation!", 
+		"(and the previous three)", 
+		"I don't need a piece of paper to tell me anything!", 
+		"(I'll keep them in my pocket though. That way I only have to press [Space] to look at them)", 
+		"And now, let's start collecting!", 
+		"There are so many hooks on the walls", 
+		"I don't even have a reason to use the pin."
+		],
+	"1" : [
+		"So far so good", "gotta keep collectin'",
+		"They won't even know what hit 'em",
+		"Wow.",
+		"I feel so cool now.",
+		"Talking like those youngsters."
+		],
+	"2" : [
+		"I'm starting to doubt if this is actually a good idea.",
+		"Maybe I should call it quits and just keep the rope",
+		"But where would be the fun in that?"
+		],
+	"3" : [
+		"The last time I collected so many of those was..",
+		"Huh...",
+		"I think right after the dawn of the  F I R S T  A G E",
+		"I always liked the first age"
+		],
+	"4" : [
+		"I wonder if there are still other sewer workers left",
+		"Sometimes it feels like I'm the only one doing this",
+		"I guess young people these days just can't take a supernova erruption going off.",
+		"Inside the sewers.",
+		"Whatevs.",
+		"There will be more eventually.",
+		"There always are."
+		],
+	"5" : [
+		"I should stop dawdling",
+		"my flight goes at 5"
+		],
+	"6" : [
+		"Now that I think about it...",
+		"Shouldn't I get the souvenir during the holiday and not before?"
+		],
+	"7" : [
+		"Whatever.",
+		"I'll just do it after my holiday then",
+		"It won't go old"
+		],
+	"8" : [
+		"\"Mornin' Boss.\"",
+		"[Stop talking like a teenager, Sew. This is work]",
+		"\"Sorry. I just wanted to call in sick.",
+		"[What a shame. What is it you got?]",
+		"\"I think roundabout {score} viral infections\"",
+		"[Okay the- you got WHAT?!]",
+		"Oh yeah. That's how it would've gone",
+		"If this wasn't so much fun!",
+		"I'd miss my rocket for this!"
+		],
 }
