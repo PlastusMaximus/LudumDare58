@@ -26,6 +26,8 @@ func _on_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		StatManagerGlobal.coins += body.worth
 		body.queue_free()
+		if get_parent().enemies.get_children().size() == 1:
+			await get_tree().create_timer(.5).timeout
 		if get_parent().enemies.get_children().is_empty():
 			if get_parent() is Level and get_parent() is not EndlessMode:
 				get_parent().won.emit()
