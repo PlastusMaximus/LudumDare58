@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjnhpggtlrhj4"]
 
 [ext_resource type="Script" uid="uid://djvip5j8vdiws" path="res://scripts/ui/dialogue_box.gd" id="1_xg44k"]
-[ext_resource type="Theme" uid="uid://b7k60gus3bkef" path="res://assets/visual/ui_theme.tres" id="2_6iboe"]
+[ext_resource type="Theme" uid="uid://b7k60gus3bkef" path="res://assets/visual/textures/ui_theme.tres" id="2_6iboe"]
 [ext_resource type="Script" uid="uid://clwnvahvxlrto" path="res://scripts/ui/dynamic_button.gd" id="3_4mjmi"]
 
 [node name="DialogueBox" type="Control"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=4 uid="uid://ccyn2jakodxhi"]
 
-[ext_resource type="TileSet" uid="uid://csea0f6t8x3mk" path="res://assets/visual/wall_tile_set.tres" id="1_jghhr"]
-[ext_resource type="Script" uid="uid://ljxi018ftxmj" path="res://scripts/endless_mode.gd" id="1_tv5sa"]
+[ext_resource type="TileSet" uid="uid://csea0f6t8x3mk" path="res://assets/visual/tile_stuff/wall_tile_set.tres" id="1_jghhr"]
+[ext_resource type="Script" uid="uid://ljxi018ftxmj" path="res://scripts/levels/endless_mode.gd" id="1_tv5sa"]
 [ext_resource type="PackedScene" uid="uid://dlukhtdc5xlsr" path="res://scenes/entities/player.tscn" id="1_w7c3h"]
-[ext_resource type="PackedScene" uid="uid://cauuyn3ddtg0p" path="res://scenes/pipe.tscn" id="2_w8frs"]
+[ext_resource type="PackedScene" uid="uid://cauuyn3ddtg0p" path="res://scenes/objects/pipe.tscn" id="2_w8frs"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mx8sn"]
 vertices = PackedVector2Array(470, 262, 10, 262, 10, 10, 470, 10)

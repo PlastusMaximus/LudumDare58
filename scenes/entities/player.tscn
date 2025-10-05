@@ -1,12 +1,12 @@
 [gd_scene load_steps=44 format=3 uid="uid://dlukhtdc5xlsr"]
 
 [ext_resource type="Script" uid="uid://xgly6ivcsmm1" path="res://scripts/entities/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://bdl5hi2cwapke" path="res://assets/visual/player_idle.png" id="2_42nxq"]
-[ext_resource type="Texture2D" uid="uid://sspsmtel1o3d" path="res://assets/visual/absolute_beginning.png" id="2_d4qa6"]
-[ext_resource type="Texture2D" uid="uid://bso48nuhjmvq2" path="res://assets/visual/player_sprite_sheet.png" id="3_1ie0h"]
-[ext_resource type="Texture2D" uid="uid://3utcvb8ra0q8" path="res://assets/visual/player_reading.png" id="3_42nxq"]
-[ext_resource type="Texture2D" uid="uid://roii2kw5vcnl" path="res://assets/visual/player_reading_idle.png" id="4_5u6hq"]
-[ext_resource type="Theme" uid="uid://b7k60gus3bkef" path="res://assets/visual/ui_theme.tres" id="7_ss7kx"]
+[ext_resource type="Texture2D" uid="uid://bdl5hi2cwapke" path="res://assets/visual/entity_sprites/player_idle.png" id="2_42nxq"]
+[ext_resource type="Texture2D" uid="uid://sspsmtel1o3d" path="res://assets/visual/entity_sprites/absolute_beginning.png" id="2_d4qa6"]
+[ext_resource type="Texture2D" uid="uid://bso48nuhjmvq2" path="res://assets/visual/entity_sprites/player_sprite_sheet.png" id="3_1ie0h"]
+[ext_resource type="Texture2D" uid="uid://3utcvb8ra0q8" path="res://assets/visual/entity_sprites/player_reading.png" id="3_42nxq"]
+[ext_resource type="Texture2D" uid="uid://roii2kw5vcnl" path="res://assets/visual/entity_sprites/player_reading_idle.png" id="4_5u6hq"]
+[ext_resource type="Theme" uid="uid://b7k60gus3bkef" path="res://assets/visual/textures/ui_theme.tres" id="7_ss7kx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tb0mf"]
 atlas = ExtResource("3_42nxq")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpy6htfcsxbiu"]
 
-[ext_resource type="Texture2D" uid="uid://dr0rpwuxsi0g5" path="res://assets/visual/longer_rope.png" id="1_ghbyf"]
-[ext_resource type="Script" uid="uid://e6dkmc8ehio2" path="res://scripts/rope.gd" id="1_icxtj"]
+[ext_resource type="Texture2D" uid="uid://dr0rpwuxsi0g5" path="res://assets/visual/textures/longer_rope.png" id="1_ghbyf"]
+[ext_resource type="Script" uid="uid://e6dkmc8ehio2" path="res://scripts/objects/rope.gd" id="1_icxtj"]
 
 [sub_resource type="Curve" id="Curve_pdjlr"]
 _data = [Vector2(0, 0.11235964), 0.0, 0.64606744, 0, 0, Vector2(1, 0.3146068), 0.30149817, 0.0, 0, 0]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx6qa8kqnrm86"
-path="res://.godot/imported/dead_hook.png-8326c8a094d561b95ef9962dc3ea918a.ctex"
+uid="uid://dvx37w55mta13"
+path="res://.godot/imported/wall_texture.png-6b142e0477a20e7f6e823be7d933eff4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visual/dead_hook.png"
-dest_files=["res://.godot/imported/dead_hook.png-8326c8a094d561b95ef9962dc3ea918a.ctex"]
+source_file="res://assets/visual/textures/wall_texture.png"
+dest_files=["res://.godot/imported/wall_texture.png-6b142e0477a20e7f6e823be7d933eff4.ctex"]
 
 [params]
 

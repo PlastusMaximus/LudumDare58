@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=4 uid="uid://bxh4nnmqaxgdc"]
 
-[ext_resource type="Script" uid="uid://cmksndmgxqlw8" path="res://scripts/level.gd" id="1_eu6uc"]
-[ext_resource type="TileSet" uid="uid://csea0f6t8x3mk" path="res://assets/visual/wall_tile_set.tres" id="2_alsfw"]
+[ext_resource type="Script" uid="uid://cmksndmgxqlw8" path="res://scripts/levels/level.gd" id="1_eu6uc"]
+[ext_resource type="TileSet" uid="uid://csea0f6t8x3mk" path="res://assets/visual/tile_stuff/wall_tile_set.tres" id="2_alsfw"]
 [ext_resource type="PackedScene" uid="uid://dlukhtdc5xlsr" path="res://scenes/entities/player.tscn" id="3_x7ivo"]
 [ext_resource type="PackedScene" uid="uid://dyms4wvgonf18" path="res://scenes/entities/enemies/enemy.tscn" id="4_0h83p"]
-[ext_resource type="PackedScene" uid="uid://cauuyn3ddtg0p" path="res://scenes/pipe.tscn" id="5_j5xkg"]
+[ext_resource type="PackedScene" uid="uid://cauuyn3ddtg0p" path="res://scenes/objects/pipe.tscn" id="5_j5xkg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mx8sn"]
 vertices = PackedVector2Array(390, 214, 10, 214, 10, 10, 390, 10)

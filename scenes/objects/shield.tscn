@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dociya2ut45li"]
 
-[ext_resource type="Texture2D" uid="uid://buv8wf65usw17" path="res://assets/visual/shield.png" id="1_vtru8"]
+[ext_resource type="Texture2D" uid="uid://buv8wf65usw17" path="res://assets/visual/object_sprites/shield.png" id="1_vtru8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08t41"]
 size = Vector2(3.0508504, 3.6055532)
