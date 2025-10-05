@@ -65,6 +65,7 @@ offset_left = 660.0
 offset_top = 133.0
 offset_right = 1252.0
 offset_bottom = 1048.0
+mouse_filter = 2
 texture = ExtResource("2_n4ldv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu"]

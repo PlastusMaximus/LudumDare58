@@ -18,6 +18,8 @@ const SHIELD = preload("uid://dociya2ut45li")
 var current_rope: Rope
 
 func _ready() -> void:
+	rope_label.hide()
+	pin_label.hide()
 	for i: int in range(0,StatManagerGlobal.shield_pieces):
 		var path_follow: PathFollow2D = PathFollow2D.new()
 		shield_radius.add_child(path_follow)

@@ -23,10 +23,6 @@ func _ready() -> void:
 	await disappear_tween().finished
 	dialogue_finished.connect(_on_dialogue_finished)
 
-#func _process(delta: float) -> void:
-		#print(dialogue_text)
-		#print(dialogue_text.text)
-
 func appear_tween() -> Tween:
 	show()
 	var tween: Tween = create_tween()

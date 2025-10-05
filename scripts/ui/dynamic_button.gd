@@ -13,8 +13,8 @@ func _ready() -> void:
 	planned_pos = global_position
 	pivot_offset = size/2
 	
-	button_squeak.stream = preload("uid://ru38vvensg25")
-	button_press.stream = preload("uid://cljscvpepk4b2")
+	button_squeak.stream = preload("uid://c5mvsywnkii2d")
+	button_press.stream = preload("uid://cyr0f73xm3ran")
 	button_squeak.add_to_group("SFX")
 	button_press.add_to_group("SFX")
 	add_child(button_squeak)
