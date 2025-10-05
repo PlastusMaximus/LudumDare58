@@ -96,6 +96,12 @@ layout_mode = 2
 text = "Settings"
 script = ExtResource("3_cxt63")
 
+[node name="Retry" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+text = "Retry Level"
+script = ExtResource("3_cxt63")
+
 [node name="MainMenu" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
@@ -110,5 +116,6 @@ script = ExtResource("3_cxt63")
 
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/Quit" to="." method="_on_quit_pressed"]

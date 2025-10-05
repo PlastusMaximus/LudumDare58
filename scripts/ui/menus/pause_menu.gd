@@ -51,3 +51,8 @@ func _on_main_menu_pressed() -> void:
 func _on_quit_pressed() -> void:
 	GameManagerGlobal.unpause_game()
 	GameManagerGlobal.quit_game()
+
+
+func _on_retry_pressed() -> void:
+	GameManagerGlobal.unpause_game()
+	GameManagerGlobal.load_scene(StatManagerGlobal.current_level.scene_file_path)
