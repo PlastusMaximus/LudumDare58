@@ -45,6 +45,7 @@ difficulty = 2
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("4_8ul8o")]
 position = Vector2(207, 96)
+rotation = 3.1415927
 movement = 1
 difficulty = 3
 
