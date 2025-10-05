@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://c7xkoufr2uadr" path="res://scenes/ui/menus/settings/slider_setting.tscn" id="2_r6d6q"]
 
 [node name="Settings" type="Control"]
+process_mode = 3
 custom_minimum_size = Vector2(350, 1080)
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("1_5p8wc")
 
 [node name="TabContainer" type="TabContainer" parent="."]

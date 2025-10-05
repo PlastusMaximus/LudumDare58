@@ -12,10 +12,9 @@ func _ready() -> void:
 	theme = UI_THEME
 	planned_pos = global_position
 	pivot_offset = size/2
-	#TODO!
-	button_squeak.stream = null
-	#TODO!
-	button_press.stream = null
+	
+	button_squeak.stream = preload("uid://ru38vvensg25")
+	button_press.stream = preload("uid://cljscvpepk4b2")
 	button_squeak.add_to_group("SFX")
 	button_press.add_to_group("SFX")
 	add_child(button_squeak)
@@ -43,4 +42,4 @@ func deselect_tween() -> Tween:
 
 func pressed_tween() -> void:
 	button_press.pitch_scale = randf_range(0.95,1.05)
-	button_press.play(0.22)
+	button_press.play()

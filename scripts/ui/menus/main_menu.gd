@@ -7,6 +7,8 @@ const MAIN_MENU: String = "res://scenes/ui/menus/main_menu.tscn"
 @onready var settings: Settings = GameManagerGlobal.settings
 
 func _ready() -> void:
+	MusicManagerGlobal.pause_track(MusicManagerGlobal.theme_1)
+	MusicManagerGlobal.unpause_track(MusicManagerGlobal.theme_2)
 	appear_tween()
 
 func appear_tween() -> Tween:
@@ -25,6 +27,7 @@ func _disappear_tween() -> Tween:
 
 func _on_start_pressed() -> void:
 	await _disappear_tween().finished
+	MusicManagerGlobal.pause_track(MusicManagerGlobal.theme_2)
 	GameManagerGlobal.load_scene("res://scenes/level/tutorial.tscn")
 
 func _on_settings_pressed() -> void:

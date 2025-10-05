@@ -2,6 +2,7 @@ class_name Pipe extends StaticBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var collection_area: Area2D = $CollectionArea
+@onready var collection_sfx: AudioStreamPlayer2D = $CollectionSFX
 
 var collecting: bool = false
 
@@ -10,6 +11,8 @@ func _ready() -> void:
 
 func start_collecting() -> void:
 	animated_sprite.play("collecting")
+	collection_sfx.pitch_scale = randf_range(.9,1.1)
+	collection_sfx.play()
 	collecting = true
 	collection_area.monitoring = true
 
@@ -17,6 +20,7 @@ func stop_collecting() -> void:
 	collecting = false
 	collection_area.monitoring = false
 	animated_sprite.play("activated")
+	collection_sfx.stop()
 
 func _on_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:

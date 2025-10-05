@@ -71,7 +71,7 @@ movement = 1
 difficulty = 2
 
 [node name="Player" parent="." instance=ExtResource("2_w4sk7")]
-position = Vector2(120, 213)
+position = Vector2(200, 185)
 
 [node name="Camera" type="Camera2D" parent="Player" groups=["Camera"]]
 zoom = Vector2(8, 8)

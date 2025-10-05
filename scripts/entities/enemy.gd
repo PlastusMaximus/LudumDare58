@@ -24,6 +24,7 @@ enum Difficulty {
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+@onready var collision_sfx: AudioStreamPlayer2D = $CollisionSFX
 
 var speed: int = 150
 var damage: int = 1
@@ -119,5 +120,7 @@ func apply_difficulty() -> void:
 			animated_sprite.play("hard")
 
 func _on_collision_area_body_entered(_sbody: Node2D) -> void:
+	collision_sfx.pitch_scale = randf_range(.8,1.2)
+	collision_sfx.play()
 	rotation_degrees += randi_range(135,225)
 	

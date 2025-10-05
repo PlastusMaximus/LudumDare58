@@ -1,7 +1,8 @@
-[gd_scene load_steps=38 format=3 uid="uid://dyms4wvgonf18"]
+[gd_scene load_steps=39 format=3 uid="uid://dyms4wvgonf18"]
 
 [ext_resource type="Script" uid="uid://cmlg4sfvv8gv3" path="res://scripts/entities/enemy.gd" id="1_essrt"]
 [ext_resource type="Texture2D" uid="uid://pc1fs60m2r5k" path="res://assets/visual/enemy_sprite_sheet.png" id="2_c8ylr"]
+[ext_resource type="AudioStream" uid="uid://cc2f42l21ifyj" path="res://assets/audio/sfx/enemy_sfx.mp3" id="3_c8ylr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fa8ir"]
 atlas = ExtResource("2_c8ylr")
@@ -277,5 +278,8 @@ shape = SubResource("CircleShape2D_md0e3")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="CollisionArea"]
 shape = SubResource("CircleShape2D_4ra3w")
+
+[node name="CollisionSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_c8ylr")
 
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]

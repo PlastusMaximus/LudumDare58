@@ -76,6 +76,9 @@ func edge_cases() -> void:
 				StatManagerGlobal.current_level.opening_animation()
 				await StatManagerGlobal.current_level.opening_animation_finished
 				await appear_tween().finished
+			if current_dialogue_position == 27:
+				await GameManagerGlobal.ui.tutorial_appear_tween().finished
+				GameManagerGlobal.ui.tutorial_visible = true
 		8:
 			if current_dialogue_position == 7:
 				await level_appear_tween().finished

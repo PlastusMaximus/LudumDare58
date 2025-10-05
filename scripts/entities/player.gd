@@ -94,7 +94,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel"):
 		if current_rope != null:
 			current_rope.rope_done = true
-			current_rope.queue_free()
+			current_rope.free()
 			current_rope = null
 			StatManagerGlobal.depleted_rope = 0
 			StatManagerGlobal.depleted_pins = 0
@@ -152,4 +152,4 @@ func _on_area_body_entered(body: Node2D) -> void:
 			await _die_tween().finished
 			get_parent().lost.emit()
 			GameManagerGlobal.quit_game()
-			queue_free()
+			free()

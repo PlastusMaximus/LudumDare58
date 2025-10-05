@@ -10,7 +10,6 @@ signal shop_closed()
 @onready var more_rope: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/MoreRope
 @onready var more_pins: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/MorePins
 @onready var more_hp: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/MoreHP
-@onready var more_time: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/MoreTime
 @onready var buy_shield: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/BuyShield
 @onready var buy_slushie: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/BuySlushie
 
@@ -27,7 +26,6 @@ var shield_price: int = 10
 var slushie_price: int = 20
 
 func open_shop() -> void:
-	StatManagerGlobal.current_level.music.stream_paused = true
 	show()
 	appear_tween()
 	refresh_price_tags()
@@ -96,8 +94,8 @@ func _disappear_tween() -> Tween:
 
 func _on_start_pressed() -> void:
 	shop_closed.emit()
-	if StatManagerGlobal.current_level is EndlessMode:
-		StatManagerGlobal.current_level.music.stream_paused = false
+	MusicManagerGlobal.pause_track(MusicManagerGlobal.theme_2)
+	MusicManagerGlobal.unpause_track(MusicManagerGlobal.theme_1)
 	_disappear_tween()
 	hide()
 

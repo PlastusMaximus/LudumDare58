@@ -1,7 +1,6 @@
 class_name Level extends Node2D
 
 const DEAD_HOOK: PackedScene = preload("uid://c87lxb0i7fp4k")
-const SEWERNIR_THEME_LOOP = preload("uid://cv0qq4xgmkhob")
 
 const DEAD_HOOK_TILES: Array[Vector2] = [
 	Vector2(1,0), Vector2(0,1), Vector2(2,1), Vector2(1,2),
@@ -39,6 +38,7 @@ func _ready() -> void:
 	won.connect(_on_won)
 	
 	_place_tiles_with_scenes()
+	MusicManagerGlobal.pause_track(MusicManagerGlobal.theme_2)
 	MusicManagerGlobal.unpause_track(MusicManagerGlobal.theme_1)
 
 

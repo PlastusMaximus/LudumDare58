@@ -6,15 +6,11 @@ class_name GameManager extends Node
 @onready var dialogue_box: DialogueBox = $UI_Layer/DialogueBox
 @onready var pause_menu: PauseMenu = $UI_Layer/PauseMenu
 @onready var settings: Settings = $UI_Layer/Settings
-@onready var music_manager: MusicManager = $UI_Layer/MusicManager
 @onready var load_manager: LoadManager = $UI_Layer/LoadManager
 
 var enemy_movements: Dictionary[Enemy, Enemy.MovementStates] = {}
 var shop_open: bool = false
 var dialogue_box_open: bool = false
-
-func _ready() -> void:
-	
 
 ##Hides every UI element and then quits the game
 func quit_game() -> void:
@@ -22,6 +18,8 @@ func quit_game() -> void:
 	load_manager.quit_game()
 
 func finish_level(scene_path: String) -> void:
+	MusicManagerGlobal.pause_track(MusicManagerGlobal.theme_1)
+	MusicManagerGlobal.unpause_track(MusicManagerGlobal.theme_2)
 	shop.open_shop()
 	shop_open = true
 	await shop.shop_closed
@@ -29,6 +27,8 @@ func finish_level(scene_path: String) -> void:
 	load_scene(scene_path)
 
 func open_shop_in_endless_mode() -> void:
+	MusicManagerGlobal.pause_track(MusicManagerGlobal.theme_1)
+	MusicManagerGlobal.unpause_track(MusicManagerGlobal.theme_2)
 	shop.open_shop()
 	shop_open = true
 

@@ -12,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_u7n8c")
 
 [node name="Stats" type="VBoxContainer" parent="."]
@@ -101,4 +102,5 @@ text = "Use  [color=green]WASD[/color] or the  [color=green]Arrow Keys[/color] t
 Press [color=red]E[/color] to apply the rope on [color=red]wall hooks[/color].
 You can also use pins to apply the rope on the [color=red]floor[/color].
 Press [color=purple]Q[/color] to [color=purple]let go[/color] of the rope.
-Press [color=light_blue]F[/color] to  [color=light_blue]drink[/color] (stay hydrated!)"
+Press [color=light_blue]F[/color] to  [color=light_blue]drink[/color] (stay hydrated!)
+Press [Space] to hide this"

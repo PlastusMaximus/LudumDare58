@@ -27,12 +27,13 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	done.connect(_on_done)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not rope_done:
 		set_point_position(points.size()-1, player.global_position)
 		
 		if not rope_sounds.playing:
 			rope_sounds.stream = ROPE_SOUNDS.pick_random()
+			rope_sounds.pitch_scale = randf_range(.9,1.1)
 			rope_sounds.play()
 		
 		var collision: CollisionShape2D = rope_body.get_child(rope_body.get_children().size()-1) 
@@ -80,8 +81,6 @@ func add_knot_to_rope(knot_position: Vector2) -> void:
 	fixated_knot_collision_shape.shape = rope_collision
 	
 	rope_body.add_child(fixated_knot_collision_shape)
-	for child: CollisionShape2D in rope_body.get_children():
-		var segment: SegmentShape2D = child.shape
 
 func determine_dead_hook_position(dead_hook: DeadHook) -> Vector2:
 	var new_position: Vector2 = dead_hook.global_position
