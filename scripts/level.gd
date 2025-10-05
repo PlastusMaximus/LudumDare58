@@ -1,6 +1,7 @@
 class_name Level extends Node2D
 
 const DEAD_HOOK: PackedScene = preload("uid://c87lxb0i7fp4k")
+const SEWERNIR_THEME_LOOP = preload("uid://cv0qq4xgmkhob")
 
 const DEAD_HOOK_TILES: Array[Vector2] = [
 	Vector2(1,0), Vector2(0,1), Vector2(2,1), Vector2(1,2),
@@ -21,8 +22,6 @@ signal lost()
 @onready var collection_area: NavigationRegion2D = $CollectionArea
 @onready var hooks: Node2D = $Hooks
 @onready var enemies: Node2D = $Enemies
-@onready var time_limit: Timer = $TimeLimit
-
 
 var player: Player
 var pipe: Pipe
@@ -32,13 +31,16 @@ func _ready() -> void:
 	StatManagerGlobal.current_level = self
 	StatManagerGlobal.depleted_hp = 0
 	GameManagerGlobal.start_dialogue()
+	
 	player = get_tree().get_first_node_in_group("Player")
 	
 	consumption_area_added.connect(_on_consumption_area_added)
-	time_limit.timeout.connect(_on_time_limit_timeout)
+
 	won.connect(_on_won)
 	
 	_place_tiles_with_scenes()
+	MusicManagerGlobal.unpause_track(MusicManagerGlobal.theme_1)
+
 
 func _place_tiles_with_scenes() -> void:
 	for tile_position: Vector2 in border.get_used_cells(): 
@@ -89,11 +91,6 @@ func _on_consumption_scan_body_entered(body: Node2D) -> void:
 			body.movement = Enemy.MovementStates.COLLECTED
 		if body is Player:
 			body.can_make_rope = false
-
-
-func _on_time_limit_timeout() -> void:
-	GameManagerGlobal.finish_level(scene_file_path)
-	GameManagerGlobal.shop.title.text = "Time over. try again"
 
 func _on_won() -> void:
 	GameManagerGlobal.finish_level(next_level)

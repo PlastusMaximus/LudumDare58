@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba54fsx3qf4fg"]
+[gd_scene load_steps=5 format=3 uid="uid://ba54fsx3qf4fg"]
 
 [ext_resource type="Script" uid="uid://du2d7awi0g6hw" path="res://scripts/ui/menus/shop.gd" id="1_tbtvl"]
+[ext_resource type="Texture2D" uid="uid://dl8iklm0q0k10" path="res://assets/visual/menu_texture.png" id="2_ebf16"]
 [ext_resource type="Script" uid="uid://clwnvahvxlrto" path="res://scripts/ui/dynamic_button.gd" id="2_tllji"]
 
 [sub_resource type="Theme" id="Theme_l6cm7"]
@@ -63,22 +64,13 @@ custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 0
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -407.0
-offset_right = 292.0
-offset_bottom = 508.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0, 0.298039, 0.67451, 0.784314)
+[node name="TextureRect" type="TextureRect" parent="Menu"]
+layout_mode = 0
+offset_left = 628.0
+offset_top = 133.0
+offset_right = 1283.0
+offset_bottom = 1048.0
+texture = ExtResource("2_ebf16")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu"]
 layout_mode = 1
@@ -122,12 +114,6 @@ layout_mode = 2
 text = "More HP"
 script = ExtResource("2_tllji")
 
-[node name="MoreCollectionTime" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
-custom_minimum_size = Vector2(300, 100)
-layout_mode = 2
-text = "Longer collection time (+1 Second)"
-script = ExtResource("2_tllji")
-
 [node name="BuyShield" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
@@ -143,12 +129,9 @@ enemies for 5 seconds)
 "
 script = ExtResource("2_tllji")
 
-[node name="Music" type="AudioStreamPlayer" parent="." groups=["Music"]]
-
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/MoreRope" to="." method="_on_more_rope_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/MorePins" to="." method="_on_more_pins_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/MoreHP" to="." method="_on_more_hp_pressed"]
-[connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/MoreCollectionTime" to="." method="_on_more_collection_time_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/BuyShield" to="." method="_on_buy_shield_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/BuySlushie" to="." method="_on_buy_slushie_pressed"]

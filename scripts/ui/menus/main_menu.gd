@@ -4,7 +4,6 @@ const MAIN_MENU: String = "res://scenes/ui/menus/main_menu.tscn"
 
 @onready var title: RichTextLabel = $Background/CenterContainer/Title
 @onready var buttons: GridContainer = $Menu/HBoxContainer/VBoxContainer/Buttons
-@onready var music: AudioStreamPlayer = $Music
 @onready var settings: Settings = GameManagerGlobal.settings
 
 func _ready() -> void:

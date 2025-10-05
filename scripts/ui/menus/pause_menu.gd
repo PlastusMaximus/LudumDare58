@@ -2,13 +2,11 @@ class_name PauseMenu extends Control
 
 @onready var title: RichTextLabel = $Background/CenterContainer/Title
 @onready var buttons: GridContainer = $Menu/HBoxContainer/VBoxContainer/Buttons
-@onready var music: AudioStreamPlayer = $Music
 @onready var settings: Settings =  $"../Settings"
 
 func _ready() -> void:
 	self_modulate = Color.TRANSPARENT
 	modulate = Color.TRANSPARENT
-	music.stream_paused = true
 	hide()
 
 func _input(event: InputEvent) -> void:
@@ -25,7 +23,6 @@ func pause_tween() -> Tween:
 	tween.tween_property(self, "position", position + Vector2(10,0), 0.025).set_trans(Tween.TRANS_CIRC)
 	tween.tween_property(self, "position", position - Vector2(20,0), 0.025).set_trans(Tween.TRANS_CIRC)
 	tween.tween_property(self, "position", pos, 0.025).set_trans(Tween.TRANS_CIRC)
-	music.stream_paused = false
 	return tween
 
 func unpause_tween() -> Tween:
@@ -35,7 +32,6 @@ func unpause_tween() -> Tween:
 	tween.tween_property(self, "position", position - Vector2(0,20), 0.025).set_trans(Tween.TRANS_CIRC)
 	tween.tween_property(self, "position", pos, 0.025).set_trans(Tween.TRANS_CIRC)
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.025).set_trans(Tween.TRANS_CIRC).from_current()
-	music.stream_paused = true
 	return tween
 
 func _on_continue_pressed() -> void:

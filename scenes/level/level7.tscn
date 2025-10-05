@@ -29,16 +29,6 @@ navigation_polygon = SubResource("NavigationPolygon_mx8sn")
 [node name="ConsumptionScan" type="Area2D" parent="."]
 script = SubResource("GDScript_w8frs")
 
-[node name="Player" parent="." instance=ExtResource("3_ahxds")]
-position = Vector2(120, 213)
-
-[node name="Camera" type="Camera2D" parent="Player" groups=["Camera"]]
-zoom = Vector2(8, 8)
-limit_left = 0
-limit_top = 0
-limit_right = 400
-limit_bottom = 224
-
 [node name="Hooks" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -104,12 +94,17 @@ rotation = 3.1415927
 movement = 2
 difficulty = 3
 
+[node name="Player" parent="." instance=ExtResource("3_ahxds")]
+position = Vector2(120, 213)
+
+[node name="Camera" type="Camera2D" parent="Player" groups=["Camera"]]
+zoom = Vector2(8, 8)
+limit_left = 0
+limit_top = 0
+limit_right = 400
+limit_bottom = 224
+
 [node name="Pipe" parent="." instance=ExtResource("5_tuem3")]
 position = Vector2(200, 209)
-
-[node name="TimeLimit" type="Timer" parent="."]
-wait_time = 30.0
-one_shot = true
-autostart = true
 
 [connection signal="body_entered" from="ConsumptionScan" to="." method="_on_consumption_scan_body_entered"]

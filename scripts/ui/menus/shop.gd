@@ -4,7 +4,6 @@ signal shop_closed()
 
 @onready var title: RichTextLabel = $Background/CenterContainer/Title
 @onready var buttons: GridContainer = $Menu/HBoxContainer/VBoxContainer/Buttons
-@onready var music: AudioStreamPlayer = $Music
 @onready var settings: Settings = GameManagerGlobal.settings
 
 @onready var start: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/Start
@@ -12,31 +11,26 @@ signal shop_closed()
 @onready var more_pins: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/MorePins
 @onready var more_hp: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/MoreHP
 @onready var more_time: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/MoreTime
-@onready var more_collection_time: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/MoreCollectionTime
 @onready var buy_shield: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/BuyShield
 @onready var buy_slushie: DynamicButton = $Menu/HBoxContainer/VBoxContainer/Buttons/BuySlushie
 
 var times_rope_was_bought: int = 0
 var times_pin_was_bought: int = 0
 var times_hp_where_bought: int = 0
-var times_collection_time_was_bought: int = 0
 var times_shield_was_bought: int = 0
 var times_slushie_was_bought: int = 0
 
 var rope_price: int = 5
 var pin_price: int = 5
 var hp_price: int = 5
-var collection_time_price: int = 5
 var shield_price: int = 10
 var slushie_price: int = 20
 
 func open_shop() -> void:
+	StatManagerGlobal.current_level.music.stream_paused = true
 	show()
 	appear_tween()
 	refresh_price_tags()
-	for i: int in range(StatManagerGlobal.level+1, buttons.get_children().size()):
-		if buttons.get_child(i):
-			buttons.get_child(i).text = "[Locked. Finish level " + str(i) +" to unlock]"
 	
 func refresh_price_tags() -> void:
 	
@@ -63,12 +57,6 @@ func refresh_price_tags() -> void:
 	else:
 		more_hp.disabled = false
 	
-	more_collection_time.text = "[" + str(collection_time_price) + "€] Longer collection time (+1 Second)\n(Currently " + str(StatManagerGlobal.collection_time) + " seconds)"
-	if StatManagerGlobal.coins < collection_time_price:
-		more_collection_time.disabled = true
-	else:
-		more_collection_time.disabled = false
-	
 	buy_shield.text = "[" + str(shield_price) + "€] Buy Shield (" + str(times_shield_was_bought) + "/8)"
 	if StatManagerGlobal.coins < shield_price:
 		buy_shield.disabled = true
@@ -86,6 +74,11 @@ func refresh_price_tags() -> void:
 	if times_slushie_was_bought > 0:
 		buy_slushie.text = "Sold out!"
 		buy_slushie.disabled = true
+	
+	for i: int in range(StatManagerGlobal.level+1, buttons.get_children().size()):
+		if buttons.get_child(i):
+			buttons.get_child(i).text = "[Locked. Finish level " + str(i) +" to unlock]"
+			buttons.get_child(i).disabled = true
 
 func appear_tween() -> Tween:
 	var tween: Tween = create_tween().set_parallel(true)
@@ -103,6 +96,8 @@ func _disappear_tween() -> Tween:
 
 func _on_start_pressed() -> void:
 	shop_closed.emit()
+	if StatManagerGlobal.current_level is EndlessMode:
+		StatManagerGlobal.current_level.music.stream_paused = false
 	_disappear_tween()
 	hide()
 
@@ -125,13 +120,6 @@ func _on_more_hp_pressed() -> void:
 	StatManagerGlobal.hp += 1
 	times_hp_where_bought += 1
 	hp_price += times_hp_where_bought
-	refresh_price_tags()
-
-func _on_more_collection_time_pressed() -> void:
-	StatManagerGlobal.coins -= collection_time_price
-	StatManagerGlobal.additional_time += 1
-	times_collection_time_was_bought += 1
-	collection_time_price += times_collection_time_was_bought
 	refresh_price_tags()
 
 func _on_buy_shield_pressed() -> void:

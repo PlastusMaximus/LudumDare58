@@ -1,11 +1,15 @@
 class_name DynamicButton extends Button
 
+const UI_THEME = preload("uid://b7k60gus3bkef")
+
+
 @export var planned_pos: Vector2
 
 var button_squeak: AudioStreamPlayer = AudioStreamPlayer.new()
 var button_press: AudioStreamPlayer = AudioStreamPlayer.new()
 
 func _ready() -> void:
+	theme = UI_THEME
 	planned_pos = global_position
 	pivot_offset = size/2
 	#TODO!

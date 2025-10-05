@@ -13,6 +13,9 @@ var enemy_movements: Dictionary[Enemy, Enemy.MovementStates] = {}
 var shop_open: bool = false
 var dialogue_box_open: bool = false
 
+func _ready() -> void:
+	
+
 ##Hides every UI element and then quits the game
 func quit_game() -> void:
 	_hide_ui()

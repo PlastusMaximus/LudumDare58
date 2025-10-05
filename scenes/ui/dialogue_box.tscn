@@ -45,6 +45,7 @@ theme = ExtResource("2_6iboe")
 
 [node name="DialogueText" type="RichTextLabel" parent="Dialogue"]
 layout_mode = 2
+theme = ExtResource("2_6iboe")
 bbcode_enabled = true
 text = "Hello, is this Pizza Hut?
 Excellent. My name is Ben Shapiro. Conservative thought leader. Prominent white YouTuber. The Muggsy Bogues of the intellectual dark Web. And—look, it’s just a fact—I would like to order some pizza pie. If you are triggered by that request, I do not care. I truly do not.
@@ -53,14 +54,13 @@ Second, any pizza I order will be male. None of this “Our pizza identifies as 
 Now. With regard to my topping preference. I have eaten from your pizzeria in times past, and it must be said: your pepperoni is embarrassingly spicy. Frankly, it boggles the mind. I mean, what kind of drugs are you inhaling over there? Pot?! One bite of that stuff and I had to take a shower. So tread lightly when it comes to spice, my good man. You do not want to see me at my most epic. Like the great white hero of Zack Snyder’s classic film “300,” I will kick you.
 Onions, peppers—no, thank you. If I wanted veggies, I’d go to a salad bar. I’m not some sort of vegan, Cory Booker weirdo. And your efforts to Michelle Obama-ize the great American pizza pie are, frankly, hilarious. Though not as funny as the impressively named P’Zone—when I finally figured out that genuinely creative pun, I laughed until I cried and peed. A true Spartan admits defeat, and I must admit that, in this instance, your Hut humor slayed me, Dennis Miller style.
 And, with that, you have earned my order. Congratulations. Ahem. Without further ado, I would like your smallest child pizza, no sauce, extra cheese. Hello? Aha. A hang-up. Another triggered lib, bested by logic. Damn it. I’m fucking starving."
-scroll_active = false
 
 [node name="Name" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 661.0
+offset_left = 688.0
 offset_top = 771.0
-offset_right = 866.0
+offset_right = 893.0
 offset_bottom = 881.0
 grow_vertical = 0
 theme = ExtResource("2_6iboe")

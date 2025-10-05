@@ -2,8 +2,11 @@ class_name EndlessMode extends Level
 
 const ENEMY: PackedScene = preload("uid://dyms4wvgonf18")
 
+@onready var time_limit: Timer = $TimeLimit
+
 func _ready() -> void:
 	super._ready()
+	time_limit.timeout.connect(_on_time_limit_timeout)
 	_spawn_enemies()
 
 func next_endless_mode_wave() -> void:

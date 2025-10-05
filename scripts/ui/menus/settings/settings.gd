@@ -23,11 +23,11 @@ func _on_hide_pressed() -> void:
 	hide()
 
 func _on_music_setting_value_changed(value: float) -> void:
-	StatManagerGlobal.music_volume = value / 100
+	MusicManagerGlobal.music_volume = value / 100
 	for music_node: AudioStreamPlayer in get_tree().get_nodes_in_group("Music"):
-		music_node.volume_linear = StatManagerGlobal.music_volume
+		music_node.volume_linear = MusicManagerGlobal.music_volume
 
 func _on_sfx_setting_value_changed(value: float) -> void:
-	StatManagerGlobal.sfx_volume = value / 100
+	MusicManagerGlobal.sfx_volume = value / 100
 	for sfx_node in get_tree().get_nodes_in_group("SFX"):
-		sfx_node.volume_linear = StatManagerGlobal.sfx_volume
+		sfx_node.volume_linear = MusicManagerGlobal.sfx_volume

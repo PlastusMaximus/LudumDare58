@@ -28,10 +28,7 @@ func _process(_delta: float) -> void:
 		if StatManagerGlobal.current_level is EndlessMode:
 			time_left.text = "[wave]Time until next wave: " + str(int(round(StatManagerGlobal.current_level.time_limit.time_left))) + "[/wave]"
 		else:
-			if StatManagerGlobal.current_level.time_limit.is_stopped():
-				time_left.text = "[wave]No time limit[/wave]"
-			else:
-				time_left.text = "[wave]Time left: " + str(int(round(StatManagerGlobal.current_level.time_limit.time_left))) + "[/wave]"
+			time_left.hide()
 	else:
 		time_left.hide()
 

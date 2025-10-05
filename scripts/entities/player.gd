@@ -12,6 +12,8 @@ const SHIELD = preload("uid://dociya2ut45li")
 @onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
 @onready var shield_radius: Path2D = $ShieldRadius
 @onready var invincible: Timer = $Invincible
+@onready var rope_label: Label = $RopeLabel
+@onready var pin_label: Label = $PinLabel
 
 var current_rope: Rope
 
@@ -37,11 +39,21 @@ func add_shield() -> void:
 func _process(delta: float) -> void:
 	for path_follow: PathFollow2D in shield_radius.get_children():
 		path_follow.progress_ratio += 0.1 * delta
+	
+	if StatManagerGlobal.depleted_rope > 0:
+		rope_label.text = "Rope: " + str(round(StatManagerGlobal.rope - StatManagerGlobal.depleted_rope) / 100) + "m"
+		rope_label.show()
+	else:
+		rope_label.hide()
+	
+	if StatManagerGlobal.depleted_pins > 0:
+		pin_label.text = "Pins: " + str(StatManagerGlobal.pins - StatManagerGlobal.depleted_pins)
+		pin_label.show()
+	else:
+		pin_label.hide()
 
 func _physics_process(_delta: float) -> void:
 	if _player_movement():
-		if StatManagerGlobal.depleted_rope >= StatManagerGlobal.rope:
-			velocity = -velocity
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
@@ -52,6 +64,9 @@ func _physics_process(_delta: float) -> void:
 ##Returns false if no movement has been applied.
 func _player_movement() -> bool:
 	if GameManagerGlobal.shop_open or GameManagerGlobal.dialogue_box_open:
+		return false
+	if StatManagerGlobal.depleted_rope >= StatManagerGlobal.rope:
+		position = current_rope.points.get(current_rope.points.size()-2)
 		return false
 	elif Input.is_action_pressed("walk_up"):
 		velocity = Vector2(0, -speed)
@@ -132,6 +147,8 @@ func _on_area_body_entered(body: Node2D) -> void:
 		if StatManagerGlobal.hp - StatManagerGlobal.depleted_hp > 0:
 			StatManagerGlobal.depleted_hp += body.damage
 		else:
+			if current_rope != null:
+				current_rope.rope_done = true
 			await _die_tween().finished
 			get_parent().lost.emit()
 			GameManagerGlobal.quit_game()

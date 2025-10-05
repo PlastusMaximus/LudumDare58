@@ -2,9 +2,21 @@ class_name Rope extends Line2D
 
 signal done()
 
+const ROPE_SOUNDS: Array[AudioStreamMP3] = [
+	preload("uid://o65nw3820nc"),
+	preload("uid://beqa48l8k1afe"),
+	preload("uid://c413y0deq7a44"),
+	preload("uid://q12js0ak5l30"),
+	preload("uid://r2d55xmwdoa5"),
+	preload("uid://42xf1lo2q4vm"),
+	preload("uid://fselga5jlqa1"),
+	preload("uid://bhvf52v5tlx8w")
+]
+
 @export var start_side: DeadHook.Sides
 
 @onready var rope_body: StaticBody2D = $RopeBody
+@onready var rope_sounds: AudioStreamPlayer2D = $RopeSounds
 
 var level: Level
 var player: Player
@@ -18,7 +30,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not rope_done:
 		set_point_position(points.size()-1, player.global_position)
-	
+		
+		if not rope_sounds.playing:
+			rope_sounds.stream = ROPE_SOUNDS.pick_random()
+			rope_sounds.play()
+		
 		var collision: CollisionShape2D = rope_body.get_child(rope_body.get_children().size()-1) 
 		var segment: SegmentShape2D = collision.shape
 		segment.b = player.global_position
