@@ -42,12 +42,19 @@ func start_rope(dead_hook: DeadHook) -> void:
 func end_rope(dead_hook: DeadHook) -> void:
 	var end_position: Vector2 = determine_dead_hook_position(dead_hook)
 	add_point(end_position)
-	done.emit()
 	rope_done = true
 	StatManagerGlobal.depleted_rope = 0
+	StatManagerGlobal.depleted_pins = 0
+	done.emit()
 
 func add_knot_to_rope(knot_position: Vector2) -> void:
-	add_point(knot_position)
+	set_point_position(points.size()-1, knot_position)
+	add_point(player.global_position)
+	
+	if not rope_body.get_children().is_empty():
+		var last_collision: CollisionShape2D = rope_body.get_child(rope_body.get_children().size()-1) 
+		var last_segment: SegmentShape2D = last_collision.shape
+		last_segment.b = knot_position
 	
 	var rope_collision = SegmentShape2D.new()
 	rope_collision.a = knot_position
@@ -57,6 +64,10 @@ func add_knot_to_rope(knot_position: Vector2) -> void:
 	fixated_knot_collision_shape.shape = rope_collision
 	
 	rope_body.add_child(fixated_knot_collision_shape)
+	print(points)
+	for child: CollisionShape2D in rope_body.get_children():
+		var segment: SegmentShape2D = child.shape
+		print(segment.a, segment.b)
 
 func determine_dead_hook_position(dead_hook: DeadHook) -> Vector2:
 	var new_position: Vector2 = dead_hook.global_position

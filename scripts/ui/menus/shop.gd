@@ -31,6 +31,9 @@ var slushie_price: int = 20
 func open_shop() -> void:
 	show()
 	appear_tween()
+	for i: int in range(0, StatManagerGlobal.level+1):
+		if buttons.get_child(i) != null:
+			buttons.get_child(i).show()
 	refresh_price_tags()
 	
 func refresh_price_tags() -> void:

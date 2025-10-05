@@ -19,9 +19,6 @@ script/source = "class_name ConsumptionScan extends Area2D
 [node name="Level5" type="Node2D" groups=["Level"]]
 script = ExtResource("1_8ul8o")
 next_level = "uid://dpgcc4nrtwyqn"
-easy_enemies = null
-medium_enemies = null
-hard_enemies = null
 allowed_movement_states = 1
 randomized_spawn = false
 
@@ -43,7 +40,7 @@ zoom = Vector2(8, 8)
 limit_left = 0
 limit_top = 0
 limit_right = 400
-limit_bottom = 228
+limit_bottom = 224
 
 [node name="Hooks" type="Node2D" parent="."]
 

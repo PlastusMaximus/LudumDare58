@@ -4,7 +4,7 @@ const ROPE: PackedScene = preload("uid://dpy6htfcsxbiu")
 const SHIELD = preload("uid://dociya2ut45li")
 
 ##The moving speed of the player
-@export var speed: int = 100
+@export var speed: int = 75
 @export var can_make_rope: bool = true
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
@@ -62,8 +62,11 @@ func _player_movement() -> bool:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel"):
 		if current_rope != null:
+			current_rope.rope_done = true
 			current_rope.queue_free()
 			current_rope = null
+			StatManagerGlobal.depleted_rope = 0
+			StatManagerGlobal.depleted_pins = 0
 	
 	if event.is_action_pressed("interact") and can_make_rope:
 		var interactor: Node = interaction_ray_cast.get_collider()
@@ -82,7 +85,6 @@ func _input(event: InputEvent) -> void:
 			elif interactor == null and StatManagerGlobal.pins - StatManagerGlobal.depleted_pins > 0:
 				current_rope.add_knot_to_rope(global_position)
 				StatManagerGlobal.depleted_pins += 1
-
 
 func _on_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:
