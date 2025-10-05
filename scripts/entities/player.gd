@@ -153,4 +153,4 @@ func _on_area_body_entered(body: Node2D) -> void:
 				current_rope.rope_done = true
 			await _die_tween().finished
 			get_parent().lost.emit()
-			GameManagerGlobal.load_scene(StatManagerGlobal.current_level.scene_file_path)
+			GameManagerGlobal.finish_level(StatManagerGlobal.current_level.scene_file_path)
