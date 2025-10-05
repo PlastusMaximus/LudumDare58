@@ -25,7 +25,7 @@ func stop_collecting() -> void:
 func _on_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		StatManagerGlobal.coins += body.worth
-		body.free()
+		body.queue_free()
 		if get_parent().enemies.get_children().is_empty():
 			if get_parent() is Level and get_parent() is not EndlessMode:
 				get_parent().won.emit()

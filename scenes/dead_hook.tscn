@@ -7,7 +7,7 @@
 size = Vector2(14, 5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0glt3"]
-radius = 5.0
+radius = 9.0
 
 [node name="DeadHook" type="StaticBody2D" groups=["DeadHooks"]]
 collision_layer = 8
@@ -23,5 +23,5 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_0glt3")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_0glt3")
