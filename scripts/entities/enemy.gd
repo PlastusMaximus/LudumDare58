@@ -29,16 +29,22 @@ enum Difficulty {
 var speed: int = 150
 var damage: int = 1
 var worth: int = 1
+var spin_degrees: int = 1
 
 var level: Level
 var pipe: Pipe
 var player: Player
 var hover: Tween
+var turn_timer: Timer = Timer.new()
 
 func _ready() -> void:
 	level = get_parent().get_parent()
 	pipe = get_tree().get_first_node_in_group("Pipe")
 	player = get_tree().get_first_node_in_group("Player")
+	turn_timer.wait_time = 10
+	add_child(turn_timer)
+	turn_timer.timeout.connect(_on_turn_timer_timeout)
+	turn_timer.start()
 	apply_difficulty()
 	if level is EndlessMode:
 		global_position = Vector2(randi_range(16,464), randf_range(16,266))
@@ -54,7 +60,7 @@ func _process(delta: float) -> void:
 		MovementStates.SPIN:
 			hover.stop()
 			velocity = transform.y * speed
-			rotate(1 * delta)
+			rotate(spin_degrees * delta)
 		MovementStates.COLLECTED:
 			if pipe.collecting:
 				hover.stop()
@@ -124,3 +130,12 @@ func _on_collision_area_body_entered(_sbody: Node2D) -> void:
 	collision_sfx.play()
 	rotation_degrees += randi_range(135,225)
 	
+func _on_turn_timer_timeout() -> void:
+	match movement:
+		MovementStates.FORWARD:
+			rotation_degrees += 180
+		MovementStates.SPIN:
+			if spin_degrees == 1:
+				spin_degrees = -1
+			else:
+				spin_degrees = 1
