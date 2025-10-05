@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dociya2ut45li"]
+
+[ext_resource type="Texture2D" uid="uid://buv8wf65usw17" path="res://assets/visual/shield.png" id="1_vtru8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08t41"]
+size = Vector2(3.0508504, 3.6055532)
+
+[node name="Shield" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 3
+
+[node name="ShieldPiece" type="CollisionShape2D" parent="."]
+position = Vector2(-0.41602468, -0.13867378)
+rotation = 1.5707964
+scale = Vector2(0.9999993, 0.9999993)
+shape = SubResource("RectangleShape2D_08t41")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShieldPiece"]
+position = Vector2(0.13867362, 3.5762787e-07)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_vtru8")

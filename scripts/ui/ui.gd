@@ -1,14 +1,21 @@
-extends Control
+class_name UI extends Control
 
 @onready var hp: RichTextLabel = $Stats/HP
 @onready var rope: RichTextLabel = $Stats/Rope
+@onready var pins: RichTextLabel = $Stats/Pins
 @onready var coins: RichTextLabel = $Stats/Coins
 @onready var time_left: RichTextLabel = $Stats/TimeLeft
+@onready var level: RichTextLabel = $VBoxContainer/Level
 
 func _process(_delta: float) -> void:
 	hp.text = "[wave]HP: " + str(StatManagerGlobal.hp) + "[/wave]"
-	rope.text = "[wave]Rope: " + str(StatManagerGlobal.rope /100) + "m[/wave]"
+	if get_tree().get_nodes_in_group("Rope").is_empty():
+		rope.text = "[wave]Rope: " + str(int(round(StatManagerGlobal.rope /100))) + "m[/wave]"
+	else:
+		rope.text = "[wave]Rope: " + str(round(StatManagerGlobal.rope - StatManagerGlobal.depleted_rope) / 100) + "m[/wave]"
+	pins.text = "[wave]Pins: " +  str(StatManagerGlobal.pins - StatManagerGlobal.depleted_pins) + "[/wave]"
 	coins.text = "[wave]Coins: " + str(StatManagerGlobal.coins) + "[/wave]"
+	level.text = "[wave]Level: " + str(StatManagerGlobal.level) +"[/wave]"
 	if StatManagerGlobal.current_level != null:
 		time_left.show()
 		if StatManagerGlobal.current_level.time_limit.is_stopped():

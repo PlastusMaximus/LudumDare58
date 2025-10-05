@@ -8,6 +8,7 @@ signal done()
 
 var level: Level
 var player: Player
+var rope_done: bool = false
 
 func _ready() -> void:
 	level = get_parent()
@@ -15,12 +16,22 @@ func _ready() -> void:
 	done.connect(_on_done)
 
 func _process(delta: float) -> void:
-	set_point_position(points.size()-1, player.global_position)
+	if not rope_done:
+		set_point_position(points.size()-1, player.global_position)
 	
-	var collision: CollisionShape2D = rope_body.get_child(rope_body.get_children().size()-1) 
-	var segment: SegmentShape2D = collision.shape
-	segment.b = player.global_position
+		var collision: CollisionShape2D = rope_body.get_child(rope_body.get_children().size()-1) 
+		var segment: SegmentShape2D = collision.shape
+		segment.b = player.global_position
+		
+		StatManagerGlobal.depleted_rope = determine_player_leeway()
 
+func determine_player_leeway() -> float:
+	var leeway: float = 0
+	var last_point: Vector2 = points.get(0)
+	for point: Vector2 in points:
+		leeway += point.distance_to(last_point)
+		last_point = point
+	return leeway
 
 func start_rope(dead_hook: DeadHook) -> void:
 	start_side = dead_hook.side
@@ -32,6 +43,8 @@ func end_rope(dead_hook: DeadHook) -> void:
 	var end_position: Vector2 = determine_dead_hook_position(dead_hook)
 	add_point(end_position)
 	done.emit()
+	rope_done = true
+	StatManagerGlobal.depleted_rope = 0
 
 func add_knot_to_rope(knot_position: Vector2) -> void:
 	add_point(knot_position)

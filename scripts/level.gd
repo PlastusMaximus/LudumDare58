@@ -8,6 +8,7 @@ const DEAD_HOOK_TILES: Array[Vector2] = [
 ]
 
 signal consumption_area_added(polygon: CollisionPolygon2D)
+signal collecting_pipe_found()
 signal won()
 signal lost()
 
@@ -28,6 +29,30 @@ signal lost()
 
 var player: Player
 var pipe: Pipe
+
+func _ready() -> void:
+	GameManagerGlobal.ui.show()
+	StatManagerGlobal.current_level = self
+	time_limit.wait_time += StatManagerGlobal.additional_time
+	player = get_tree().get_first_node_in_group("Player")
+	
+	consumption_area_added.connect(_on_consumption_area_added)
+	time_limit.timeout.connect(_on_time_limit_timeout)
+	won.connect(_on_won)
+	
+	_place_tiles_with_scenes()
+	
+	if randomized_spawn:
+		for i: int in range(0, easy_enemies):
+			var enemy: Enemy = ENEMY.instantiate()
+			enemy.movement = randi_range(0,allowed_movement_states)
+			enemies.add_child(enemy)
+		
+		for i: int in range(0, medium_enemies):
+			enemies.add_child(ENEMY.instantiate())
+		
+		for i: int in range(0, hard_enemies):
+			enemies.add_child(ENEMY.instantiate())
 
 func _place_tiles_with_scenes() -> void:
 	for tile_position: Vector2 in border.get_used_cells(): 
@@ -51,34 +76,6 @@ func _place_tiles_with_scenes() -> void:
 					dead_hook.side = DeadHook.Sides.FLOOR
 			dead_hook.global_position = dead_hook_position
 
-
-
-
-
-func _ready() -> void:
-	_place_tiles_with_scenes()
-	
-	GameManagerGlobal.ui.show()
-	StatManagerGlobal.current_level = self
-	player = get_tree().get_first_node_in_group("Player")
-	pipe =  get_tree().get_first_node_in_group("Pipe")
-	
-	consumption_area_added.connect(_on_consumption_area_added)
-	time_limit.timeout.connect(_on_time_limit_timeout)
-	won.connect(_on_won)
-	
-	if randomized_spawn:
-		for i: int in range(0, easy_enemies):
-			var enemy: Enemy = ENEMY.instantiate()
-			enemy.movement = randi_range(0,allowed_movement_states)
-			enemies.add_child(enemy)
-		
-		for i: int in range(0, medium_enemies):
-			enemies.add_child(ENEMY.instantiate())
-		
-		for i: int in range(0, hard_enemies):
-			enemies.add_child(ENEMY.instantiate())
-
 func _on_consumption_area_added(polygon: CollisionPolygon2D) -> void:
 	#var navigation_polygon: NavigationPolygon = NavigationPolygon.new()
 	#var correct_polygon_array: PackedInt32Array = polygon.polygon.to_byte_array().to_int32_array()
@@ -89,19 +86,28 @@ func _on_consumption_area_added(polygon: CollisionPolygon2D) -> void:
 	
 func _on_consumption_scan_body_entered(body: Node2D) -> void:
 	if body is Pipe:
+		pipe = body
 		body.start_collecting()
-	if body is Enemy:
-		body.movement = Enemy.MovementStates.COLLECTED
-	if body is Player:
-		body.can_make_rope = false
-		await get_tree().create_timer(5).timeout
+		collecting_pipe_found.emit()
+		await get_tree().create_timer(StatManagerGlobal.collection_time).timeout
 		pipe.stop_collecting()
+		pipe = null
 		consumption_scan.remove_child(consumption_scan.get_child(0))
-		get_tree().get_first_node_in_group("Rope").queue_free()
-		body.can_make_rope = true
+		if not get_tree().get_nodes_in_group("Rope").is_empty():
+			get_tree().get_first_node_in_group("Rope").free()
+		player.can_make_rope = true
+	else:
+		if pipe == null:
+			await collecting_pipe_found
+		if body is Enemy:
+			body.movement = Enemy.MovementStates.COLLECTED
+		if body is Player:
+			body.can_make_rope = false
+
 
 func _on_time_limit_timeout() -> void:
-	GameManagerGlobal.load_scene(scene_file_path)
+	GameManagerGlobal.finish_level(scene_file_path)
 
 func _on_won() -> void:
-	GameManagerGlobal.load_scene(next_level)
+	GameManagerGlobal.finish_level(next_level)
+	StatManagerGlobal.level += 1

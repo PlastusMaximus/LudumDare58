@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlukhtdc5xlsr"]
+[gd_scene load_steps=7 format=3 uid="uid://dlukhtdc5xlsr"]
 
 [ext_resource type="Texture2D" uid="uid://2no52g0bxi7i" path="res://assets/visual/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://xgly6ivcsmm1" path="res://scripts/entities/player.gd" id="1_g2els"]
@@ -54,9 +54,15 @@ height = 14.0
 radius = 4.0
 height = 16.0
 
+[sub_resource type="Curve2D" id="Curve2D_08t41"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -8, 0, 0, 0, 0, 0, 0, -12, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, -8, 0)
+}
+point_count = 5
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-collision_layer = 5
-collision_mask = 5
+collision_layer = 13
+collision_mask = 13
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
@@ -69,10 +75,14 @@ shape = SubResource("CapsuleShape2D_w7c3h")
 
 [node name="InteractionRayCast" type="RayCast2D" parent="."]
 target_position = Vector2(0, 15)
+collision_mask = 9
 
 [node name="Area" type="Area2D" parent="."]
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Area"]
 shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="ShieldRadius" type="Path2D" parent="."]
+curve = SubResource("Curve2D_08t41")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

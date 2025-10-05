@@ -57,7 +57,7 @@ collection_speed = 50
 position = Vector2(142, 72)
 collection_speed = 50
 
-[node name="Chest" parent="." instance=ExtResource("3_ulkkr")]
+[node name="Pipe" parent="." instance=ExtResource("3_ulkkr")]
 position = Vector2(104, 97)
 
 [node name="TimeLimit" type="Timer" parent="."]

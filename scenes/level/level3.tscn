@@ -81,8 +81,8 @@ movement = 1
 position = Vector2(274, 48)
 movement = 1
 
-[node name="Chest" parent="." instance=ExtResource("3_ojmut")]
-position = Vector2(211, 219)
+[node name="Pipe" parent="." instance=ExtResource("3_ojmut")]
+position = Vector2(200, 209)
 
 [node name="TimeLimit" type="Timer" parent="."]
 wait_time = 30.0

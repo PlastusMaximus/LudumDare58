@@ -28,7 +28,6 @@ func _on_start_pressed() -> void:
 	await _disappear_tween().finished
 	GameManagerGlobal.load_scene("res://scenes/level/tutorial.tscn")
 
-
 func _on_settings_pressed() -> void:
 	if settings.visible:
 		await settings._disappear_tween().finished

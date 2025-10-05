@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 			if pipe.collecting:
 				hover.stop()
 				determine_new_target(pipe.global_position)
-				await get_tree().create_timer(5).timeout
+				await get_tree().create_timer(StatManagerGlobal.collection_time).timeout
 				movement = MovementStates.FORWARD
 	move_and_slide()
 

@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 const ROPE: PackedScene = preload("uid://dpy6htfcsxbiu")
-
+const SHIELD = preload("uid://dociya2ut45li")
 
 ##The moving speed of the player
 @export var speed: int = 100
@@ -10,11 +10,25 @@ const ROPE: PackedScene = preload("uid://dpy6htfcsxbiu")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
+@onready var shield_radius: Path2D = $ShieldRadius
 
 var current_rope: Rope
 
+func _ready() -> void:
+	for i: int in range(0,StatManagerGlobal.shield_pieces):
+		var path_follow: PathFollow2D = PathFollow2D.new()
+		shield_radius.add_child(path_follow)
+		path_follow.add_child(SHIELD.instantiate())
+		await get_tree().create_timer(.5).timeout
+
+func _process(delta: float) -> void:
+	for path_follow: PathFollow2D in shield_radius.get_children():
+		path_follow.progress_ratio += 0.1 * delta
+
 func _physics_process(_delta: float) -> void:
 	if _player_movement():
+		if StatManagerGlobal.depleted_rope >= StatManagerGlobal.rope:
+			velocity = -velocity
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
@@ -46,6 +60,11 @@ func _player_movement() -> bool:
 	return false
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("cancel"):
+		if current_rope != null:
+			current_rope.queue_free()
+			current_rope = null
+	
 	if event.is_action_pressed("interact") and can_make_rope:
 		var interactor: Node = interaction_ray_cast.get_collider()
 		if current_rope == null:
@@ -60,8 +79,9 @@ func _input(event: InputEvent) -> void:
 					current_rope = null
 				else:
 					current_rope.add_knot_to_rope(current_rope.determine_dead_hook_position(interactor))
-			else:
+			elif interactor == null and StatManagerGlobal.pins - StatManagerGlobal.depleted_pins > 0:
 				current_rope.add_knot_to_rope(global_position)
+				StatManagerGlobal.depleted_pins += 1
 
 
 func _on_area_body_entered(body: Node2D) -> void:

@@ -1,7 +1,8 @@
 class_name GameManager extends Node
 
 @onready var ui_layer: CanvasLayer = $UI_Layer
-@onready var ui: Control = $UI_Layer/UI
+@onready var ui: UI = $UI_Layer/UI
+@onready var shop: Shop = $UI_Layer/Shop
 @onready var pause_menu: PauseMenu = $UI_Layer/PauseMenu
 @onready var settings: Settings = $UI_Layer/Settings
 @onready var music_manager: MusicManager = $UI_Layer/MusicManager
@@ -11,6 +12,11 @@ class_name GameManager extends Node
 func quit_game() -> void:
 	_hide_ui()
 	load_manager.quit_game()
+
+func finish_level(scene_path: String) -> void:
+	shop.open_shop()
+	await shop.shop_closed
+	load_scene(scene_path)
 
 ##Hides every UI element and then loads the selected scene
 func load_scene(scene_path: String) -> void:

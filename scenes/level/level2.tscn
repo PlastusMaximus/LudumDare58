@@ -62,8 +62,8 @@ position = Vector2(253, 53)
 rotation = -1.5707964
 movement = 1
 
-[node name="Chest" parent="." instance=ExtResource("3_gxyiv")]
-position = Vector2(150, 143)
+[node name="Pipe" parent="." instance=ExtResource("3_gxyiv")]
+position = Vector2(152, 145)
 
 [node name="TimeLimit" type="Timer" parent="."]
 wait_time = 30.0
