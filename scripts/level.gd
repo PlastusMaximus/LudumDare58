@@ -33,6 +33,7 @@ func _ready() -> void:
 	GameManagerGlobal.ui.show()
 	StatManagerGlobal.current_level = self
 	StatManagerGlobal.depleted_hp = 0
+	GameManagerGlobal.start_dialogue()
 	player = get_tree().get_first_node_in_group("Player")
 	
 	consumption_area_added.connect(_on_consumption_area_added)
@@ -94,6 +95,7 @@ func _on_consumption_scan_body_entered(body: Node2D) -> void:
 
 func _on_time_limit_timeout() -> void:
 	GameManagerGlobal.finish_level(scene_file_path)
+	GameManagerGlobal.shop.title.text = "Time over. try again"
 
 func _on_won() -> void:
 	GameManagerGlobal.finish_level(next_level)

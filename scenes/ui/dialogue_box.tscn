@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjnhpggtlrhj4"]
+
+[ext_resource type="Script" uid="uid://djvip5j8vdiws" path="res://scripts/ui/dialogue_box.gd" id="1_xg44k"]
+[ext_resource type="Theme" uid="uid://b7k60gus3bkef" path="res://assets/visual/ui_theme.tres" id="2_6iboe"]
+[ext_resource type="Script" uid="uid://clwnvahvxlrto" path="res://scripts/ui/dynamic_button.gd" id="3_4mjmi"]
+
+[node name="DialogueBox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_xg44k")
+
+[node name="Dialogue" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -325.0
+offset_top = -208.0
+offset_right = 325.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_6iboe")
+
+[node name="DialogueText" type="RichTextLabel" parent="Dialogue"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Hello, is this Pizza Hut?
+Excellent. My name is Ben Shapiro. Conservative thought leader. Prominent white YouTuber. The Muggsy Bogues of the intellectual dark Web. And—look, it’s just a fact—I would like to order some pizza pie. If you are triggered by that request, I do not care. I truly do not.
+Now let’s discuss conditions. First, thank you for agreeing to debate me. Typically, in fora such as this, I am met with ad-hominem mudslinging, anything from “You racist creep” or “Is that your real voice?” to raucous schoolyard laughter and threats of the dreaded “toilet swirly.” However, your willingness to engage with me over the phone on the subject of pizza shows an intellectual fortitude and openness to dangerous ideas which reflects highly on your character. Huzzah, good sir. Huzzah.
+Second, any pizza I order will be male. None of this “Our pizza identifies as trans-fluid-pan-poly”—no. Pizza is a boy. With a penis. It’s that simple. It’s been true for all of human history, from Plato to Socrates to Mr. Mistoffelees, and any attempt to rewrite the pillars of Western thought will be met with a hearty “Fuh!” by yours truly. And, trust me, that is not a fate you wish to meet.
+Now. With regard to my topping preference. I have eaten from your pizzeria in times past, and it must be said: your pepperoni is embarrassingly spicy. Frankly, it boggles the mind. I mean, what kind of drugs are you inhaling over there? Pot?! One bite of that stuff and I had to take a shower. So tread lightly when it comes to spice, my good man. You do not want to see me at my most epic. Like the great white hero of Zack Snyder’s classic film “300,” I will kick you.
+Onions, peppers—no, thank you. If I wanted veggies, I’d go to a salad bar. I’m not some sort of vegan, Cory Booker weirdo. And your efforts to Michelle Obama-ize the great American pizza pie are, frankly, hilarious. Though not as funny as the impressively named P’Zone—when I finally figured out that genuinely creative pun, I laughed until I cried and peed. A true Spartan admits defeat, and I must admit that, in this instance, your Hut humor slayed me, Dennis Miller style.
+And, with that, you have earned my order. Congratulations. Ahem. Without further ado, I would like your smallest child pizza, no sauce, extra cheese. Hello? Aha. A hang-up. Another triggered lib, bested by logic. Damn it. I’m fucking starving."
+scroll_active = false
+
+[node name="Name" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 661.0
+offset_top = 771.0
+offset_right = 866.0
+offset_bottom = 881.0
+grow_vertical = 0
+theme = ExtResource("2_6iboe")
+
+[node name="NameText" type="RichTextLabel" parent="Name"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Sew R. Walker"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Next" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_left = 1357.0
+offset_top = 906.0
+offset_right = 1557.0
+offset_bottom = 1006.0
+theme = ExtResource("2_6iboe")
+text = "Next"
+script = ExtResource("3_4mjmi")
+
+[connection signal="pressed" from="Next" to="." method="_on_next_pressed"]

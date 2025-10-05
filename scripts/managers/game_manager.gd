@@ -3,6 +3,7 @@ class_name GameManager extends Node
 @onready var ui_layer: CanvasLayer = $UI_Layer
 @onready var ui: UI = $UI_Layer/UI
 @onready var shop: Shop = $UI_Layer/Shop
+@onready var dialogue_box: DialogueBox = $UI_Layer/DialogueBox
 @onready var pause_menu: PauseMenu = $UI_Layer/PauseMenu
 @onready var settings: Settings = $UI_Layer/Settings
 @onready var music_manager: MusicManager = $UI_Layer/MusicManager
@@ -69,3 +70,13 @@ func slushie_freeze_enemies() -> void:
 	await get_tree().create_timer(5).timeout
 	
 	unfreeze_enemies_in_endless_mode()
+
+func start_dialogue() -> void:
+	freeze_enemies_in_endless_mode()
+	dialogue_box.clear_dialogue_box()
+	await dialogue_box.appear_tween().finished
+	dialogue_box.set_dialogue(StatManagerGlobal.level)
+	dialogue_box.put_next_line()
+	await dialogue_box.dialogue_finished
+	unfreeze_enemies_in_endless_mode()
+	

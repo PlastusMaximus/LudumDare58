@@ -8,7 +8,7 @@ class_name StatManager extends Node
 @export var pins: int = 1
 @export var coins: int = 0
 @export var collection_time: int = 3
-@export_range(0,8) var shield_pieces: int = 8
+@export_range(0,8) var shield_pieces: int = 0
 @export var slushies: int = 0
 @export var endless_mode_wave: int = 0
 

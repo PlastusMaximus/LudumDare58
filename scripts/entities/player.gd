@@ -11,6 +11,7 @@ const SHIELD = preload("uid://dociya2ut45li")
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var interaction_ray_cast: RayCast2D = $InteractionRayCast
 @onready var shield_radius: Path2D = $ShieldRadius
+@onready var invincible: Timer = $Invincible
 
 var current_rope: Rope
 
@@ -97,7 +98,7 @@ func _input(event: InputEvent) -> void:
 				current_rope.start_rope(interactor)
 		else:
 			if interactor is DeadHook:
-				if current_rope.start_side == interactor.side:
+				if current_rope.start_side == interactor.side and (StatManagerGlobal.rope - StatManagerGlobal.depleted_rope) >= 0:
 					current_rope.end_rope(interactor)
 					current_rope = null
 				else:
@@ -106,8 +107,17 @@ func _input(event: InputEvent) -> void:
 				current_rope.add_knot_to_rope(global_position)
 				StatManagerGlobal.depleted_pins += 1
 
+func _hurt_tween() -> Tween:
+	var tween: Tween = create_tween().set_loops(9)
+	tween.tween_property(self, "modulate", Color.RED, .1).set_trans(Tween.TRANS_LINEAR).from(Color.WHITE)
+	tween.tween_property(self, "modulate", Color.TRANSPARENT, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
+	tween.tween_property(self, "modulate", Color.WHITE, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
+	return tween
+
 func _on_area_body_entered(body: Node2D) -> void:
-	if body is Enemy:
+	if body is Enemy and invincible.is_stopped():
+		invincible.start()
+		_hurt_tween()
 		if StatManagerGlobal.hp - StatManagerGlobal.depleted_hp > 0:
 			StatManagerGlobal.depleted_hp += body.damage
 		else:

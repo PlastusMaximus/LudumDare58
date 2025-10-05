@@ -80,8 +80,15 @@ func determine_dead_hook_position(dead_hook: DeadHook) -> Vector2:
 			new_position += Vector2(-5,0)
 	return new_position
 
+func action_tween() -> Tween:
+	var tween: Tween = create_tween()
+	tween.tween_property(self, "modulate", Color.PURPLE, (float(StatManagerGlobal.collection_time) / 5) * 4).set_trans(Tween.TRANS_SINE).from(Color.WHITE)
+	tween.tween_property(self, "modulate", Color.TRANSPARENT, (float(StatManagerGlobal.collection_time) / 5) * 1).set_trans(Tween.TRANS_SINE).from(Color.PURPLE)
+	return tween
+
 func _on_done() -> void:
 	closed = true
 	var polygon: CollisionPolygon2D = CollisionPolygon2D.new()
 	polygon.polygon = points
 	level.consumption_area_added.emit(polygon)
+	action_tween()

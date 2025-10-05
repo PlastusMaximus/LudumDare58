@@ -34,7 +34,7 @@ func open_shop() -> void:
 	show()
 	appear_tween()
 	refresh_price_tags()
-	for i: int in range(StatManagerGlobal.level+1, buttons.get_children().size()-1):
+	for i: int in range(StatManagerGlobal.level+1, buttons.get_children().size()):
 		if buttons.get_child(i):
 			buttons.get_child(i).text = "[Locked. Finish level " + str(i) +" to unlock]"
 	

@@ -6,6 +6,9 @@ class_name UI extends Control
 @onready var coins: RichTextLabel = $Stats/Coins
 @onready var time_left: RichTextLabel = $Stats/TimeLeft
 @onready var level: RichTextLabel = $VBoxContainer/Level
+@onready var tutorial_note: TextureRect = $TutorialNote
+
+var tutorial_visible: bool = false
 
 func _process(_delta: float) -> void:
 	hp.text = "[wave]HP: " + str(StatManagerGlobal.hp - StatManagerGlobal.depleted_hp) + "[/wave]"
@@ -14,7 +17,7 @@ func _process(_delta: float) -> void:
 	else:
 		rope.text = "[wave]Rope: " + str(round(StatManagerGlobal.rope - StatManagerGlobal.depleted_rope) / 100) + "m[/wave]"
 	pins.text = "[wave]Pins: " +  str(StatManagerGlobal.pins - StatManagerGlobal.depleted_pins) + "[/wave]"
-	coins.text = "[wave]Coins: " + str(StatManagerGlobal.coins) + "[/wave]"
+	coins.text = "[wave]Money: " + str(StatManagerGlobal.coins) + "€[/wave]"
 	if StatManagerGlobal.current_level is EndlessMode:
 		level.text = "[wave]Endless Mode\nWave: " + str(StatManagerGlobal.endless_mode_wave) +"[/wave]"
 	else:
@@ -31,3 +34,23 @@ func _process(_delta: float) -> void:
 				time_left.text = "[wave]Time left: " + str(int(round(StatManagerGlobal.current_level.time_limit.time_left))) + "[/wave]"
 	else:
 		time_left.hide()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("tutorial"):
+		if tutorial_visible:
+			await tutorial_disappear_tween().finished
+			tutorial_visible = false
+		else:
+			await tutorial_appear_tween().finished
+			tutorial_visible = true
+
+func tutorial_appear_tween() -> Tween:
+	var tween: Tween = create_tween()
+	tween.tween_property(tutorial_note, "position", Vector2(0, 267), .5).set_trans(Tween.TRANS_ELASTIC).from(Vector2(-600, 267))
+	return tween
+
+func tutorial_disappear_tween() -> Tween:
+	var tween: Tween = create_tween()
+	tween.tween_property(tutorial_note, "position", Vector2(-600, 267), .5).set_trans(Tween.TRANS_ELASTIC).from(Vector2(0, 267))
+	
+	return tween

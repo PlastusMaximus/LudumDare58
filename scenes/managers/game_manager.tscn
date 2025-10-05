@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://5x6a0s1sa2cg"]
+[gd_scene load_steps=9 format=3 uid="uid://5x6a0s1sa2cg"]
 
 [ext_resource type="Script" uid="uid://dtfgfk5io8qir" path="res://scripts/managers/game_manager.gd" id="1_3yu1d"]
 [ext_resource type="PackedScene" uid="uid://da7gnrajkgj2c" path="res://scenes/ui/menus/pause_menu.tscn" id="2_c2g8d"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://yy864im71bdh" path="res://scenes/ui/menus/settings/settings.tscn" id="3_fagfu"]
 [ext_resource type="PackedScene" uid="uid://ba54fsx3qf4fg" path="res://scenes/ui/menus/shop.tscn" id="3_psj4q"]
 [ext_resource type="PackedScene" uid="uid://dx50qivss6fu8" path="res://scenes/managers/music_manager.tscn" id="4_psj4q"]
+[ext_resource type="PackedScene" uid="uid://cjnhpggtlrhj4" path="res://scenes/ui/dialogue_box.tscn" id="4_ssqxr"]
 [ext_resource type="Script" uid="uid://c1dg1yycdn35" path="res://scripts/managers/load_manager.gd" id="5_ssqxr"]
 
 [node name="GameManager" type="Node"]
@@ -18,6 +19,8 @@ visible = false
 
 [node name="Shop" parent="UI_Layer" instance=ExtResource("3_psj4q")]
 visible = false
+
+[node name="DialogueBox" parent="UI_Layer" instance=ExtResource("4_ssqxr")]
 
 [node name="PauseMenu" parent="UI_Layer" instance=ExtResource("2_c2g8d")]
 mouse_filter = 2

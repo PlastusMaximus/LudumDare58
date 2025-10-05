@@ -270,4 +270,8 @@ shape = SubResource("CapsuleShape2D_g2els")
 [node name="ShieldRadius" type="Path2D" parent="."]
 curve = SubResource("Curve2D_08t41")
 
+[node name="Invincible" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
