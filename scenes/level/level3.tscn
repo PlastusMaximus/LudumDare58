@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://bkt8eoinbbs8l"]
+[gd_scene load_steps=8 format=4 uid="uid://bkt8eoinbbs8l"]
 
 [ext_resource type="Script" uid="uid://cmksndmgxqlw8" path="res://scripts/level.gd" id="1_hkmq7"]
 [ext_resource type="TileSet" uid="uid://csea0f6t8x3mk" path="res://assets/visual/wall_tile_set.tres" id="2_ojmut"]
 [ext_resource type="PackedScene" uid="uid://dlukhtdc5xlsr" path="res://scenes/entities/player.tscn" id="2_w4sk7"]
 [ext_resource type="PackedScene" uid="uid://cauuyn3ddtg0p" path="res://scenes/pipe.tscn" id="3_ojmut"]
-[ext_resource type="PackedScene" uid="uid://ly3n4ywnpm82" path="res://scenes/entities/enemies/easy_enemy.tscn" id="4_duul2"]
-[ext_resource type="PackedScene" uid="uid://cbupi3bem1eoe" path="res://scenes/entities/enemies/medium_enemy.tscn" id="5_w4sk7"]
+[ext_resource type="PackedScene" uid="uid://dyms4wvgonf18" path="res://scenes/entities/enemies/enemy.tscn" id="4_w4sk7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mx8sn"]
 vertices = PackedVector2Array(390, 214.02344, 10, 214.96875, 10, 10, 390, 10)
@@ -46,37 +45,40 @@ limit_bottom = 224
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy3" parent="Enemies" instance=ExtResource("4_duul2")]
+[node name="Enemy" parent="Enemies" instance=ExtResource("4_w4sk7")]
 position = Vector2(208, 77)
 movement = 1
+difficulty = 1
 
-[node name="Enemy4" parent="Enemies" instance=ExtResource("4_duul2")]
+[node name="Enemy2" parent="Enemies" instance=ExtResource("4_w4sk7")]
 position = Vector2(92, 77)
-rotation = 1.5707964
 movement = 2
+difficulty = 1
 
-[node name="Enemy5" parent="Enemies" instance=ExtResource("4_duul2")]
-position = Vector2(321, 74)
-rotation = -1.5707964
+[node name="Enemy3" parent="Enemies" instance=ExtResource("4_w4sk7")]
+position = Vector2(321, 77)
 movement = 2
+difficulty = 1
 
-[node name="Enemy6" parent="Enemies" instance=ExtResource("4_duul2")]
+[node name="Enemy4" parent="Enemies" instance=ExtResource("4_w4sk7")]
 position = Vector2(302, 145)
-rotation = -1.5707964
 movement = 1
+difficulty = 1
 
-[node name="Enemy7" parent="Enemies" instance=ExtResource("4_duul2")]
-position = Vector2(96, 150)
-rotation = -1.5707964
+[node name="Enemy5" parent="Enemies" instance=ExtResource("4_w4sk7")]
+position = Vector2(109, 145)
 movement = 1
+difficulty = 1
 
-[node name="MediumEnemy" parent="Enemies" instance=ExtResource("5_w4sk7")]
+[node name="Enemy6" parent="Enemies" instance=ExtResource("4_w4sk7")]
 position = Vector2(139, 46)
 movement = 1
+difficulty = 2
 
-[node name="MediumEnemy2" parent="Enemies" instance=ExtResource("5_w4sk7")]
-position = Vector2(274, 48)
+[node name="Enemy7" parent="Enemies" instance=ExtResource("4_w4sk7")]
+position = Vector2(274, 46)
 movement = 1
+difficulty = 2
 
 [node name="Pipe" parent="." instance=ExtResource("3_ojmut")]
 position = Vector2(200, 209)

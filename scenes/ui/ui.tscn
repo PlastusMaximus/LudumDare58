@@ -20,7 +20,7 @@ offset_bottom = 40.0
 
 [node name="HP" type="RichTextLabel" parent="Stats"]
 clip_contents = false
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("2_f5cxw")
 bbcode_enabled = true
@@ -28,7 +28,7 @@ text = "[wave]HP: 5[/wave]"
 
 [node name="Rope" type="RichTextLabel" parent="Stats"]
 clip_contents = false
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("2_f5cxw")
 bbcode_enabled = true
@@ -36,7 +36,7 @@ text = "[wave]Rope: 5m[/wave]"
 
 [node name="Pins" type="RichTextLabel" parent="Stats"]
 clip_contents = false
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("2_f5cxw")
 bbcode_enabled = true
@@ -44,7 +44,7 @@ text = "[wave]Pins: 1[/wave]"
 
 [node name="Coins" type="RichTextLabel" parent="Stats"]
 clip_contents = false
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("2_f5cxw")
 bbcode_enabled = true
@@ -52,7 +52,7 @@ text = "[wave]Coins: 0[/wave]"
 
 [node name="TimeLeft" type="RichTextLabel" parent="Stats"]
 clip_contents = false
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 theme = ExtResource("2_f5cxw")
 bbcode_enabled = true
@@ -70,7 +70,7 @@ alignment = 2
 
 [node name="Level" type="RichTextLabel" parent="VBoxContainer"]
 clip_contents = false
-custom_minimum_size = Vector2(300, 100)
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 theme = ExtResource("2_f5cxw")
 bbcode_enabled = true

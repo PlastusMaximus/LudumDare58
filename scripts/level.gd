@@ -1,6 +1,5 @@
 class_name Level extends Node2D
 
-const ENEMY: PackedScene = preload("uid://ly3n4ywnpm82")
 const DEAD_HOOK: PackedScene = preload("uid://c87lxb0i7fp4k")
 
 const DEAD_HOOK_TILES: Array[Vector2] = [
@@ -33,7 +32,7 @@ var pipe: Pipe
 func _ready() -> void:
 	GameManagerGlobal.ui.show()
 	StatManagerGlobal.current_level = self
-	time_limit.wait_time += StatManagerGlobal.additional_time
+	StatManagerGlobal.depleted_hp = 0
 	player = get_tree().get_first_node_in_group("Player")
 	
 	consumption_area_added.connect(_on_consumption_area_added)
@@ -41,18 +40,6 @@ func _ready() -> void:
 	won.connect(_on_won)
 	
 	_place_tiles_with_scenes()
-	
-	if randomized_spawn:
-		for i: int in range(0, easy_enemies):
-			var enemy: Enemy = ENEMY.instantiate()
-			enemy.movement = randi_range(0,allowed_movement_states)
-			enemies.add_child(enemy)
-		
-		for i: int in range(0, medium_enemies):
-			enemies.add_child(ENEMY.instantiate())
-		
-		for i: int in range(0, hard_enemies):
-			enemies.add_child(ENEMY.instantiate())
 
 func _place_tiles_with_scenes() -> void:
 	for tile_position: Vector2 in border.get_used_cells(): 

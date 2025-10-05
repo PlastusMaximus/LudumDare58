@@ -44,12 +44,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -833.0
+offset_bottom = -949.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="RichTextLabel" parent="Background/CenterContainer"]
-custom_minimum_size = Vector2(600, 0)
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 theme = SubResource("Theme_l6cm7")
 bbcode_enabled = true
@@ -71,9 +71,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -347.0
+offset_top = -407.0
 offset_right = 292.0
-offset_bottom = 465.0
+offset_bottom = 508.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -98,7 +98,6 @@ alignment = 1
 layout_mode = 2
 
 [node name="Start" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
-visible = false
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "Continue
@@ -106,35 +105,30 @@ text = "Continue
 script = ExtResource("2_tllji")
 
 [node name="MoreRope" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
-visible = false
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "More Rope (+ 1 meter)"
 script = ExtResource("2_tllji")
 
 [node name="MorePins" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
-visible = false
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "Addional pin"
 script = ExtResource("2_tllji")
 
-[node name="MoreTime" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
-visible = false
+[node name="MoreHP" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
-text = "Longer time timit (+15 Seconds)"
+text = "More HP"
 script = ExtResource("2_tllji")
 
 [node name="MoreCollectionTime" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
-visible = false
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "Longer collection time (+1 Second)"
 script = ExtResource("2_tllji")
 
 [node name="BuyShield" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
-visible = false
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "Buy Shield (1/8)
@@ -142,7 +136,6 @@ text = "Buy Shield (1/8)
 script = ExtResource("2_tllji")
 
 [node name="BuySlushie" type="Button" parent="Menu/HBoxContainer/VBoxContainer/Buttons"]
-visible = false
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "Buy Slushie (freezes
@@ -155,7 +148,7 @@ script = ExtResource("2_tllji")
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/MoreRope" to="." method="_on_more_rope_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/MorePins" to="." method="_on_more_pins_pressed"]
-[connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/MoreTime" to="." method="_on_more_time_pressed"]
+[connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/MoreHP" to="." method="_on_more_hp_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/MoreCollectionTime" to="." method="_on_more_collection_time_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/BuyShield" to="." method="_on_buy_shield_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/VBoxContainer/Buttons/BuySlushie" to="." method="_on_buy_slushie_pressed"]

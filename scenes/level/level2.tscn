@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dlukhtdc5xlsr" path="res://scenes/entities/player.tscn" id="2_7jkud"]
 [ext_resource type="TileSet" uid="uid://csea0f6t8x3mk" path="res://assets/visual/wall_tile_set.tres" id="2_gxyiv"]
 [ext_resource type="PackedScene" uid="uid://cauuyn3ddtg0p" path="res://scenes/pipe.tscn" id="3_gxyiv"]
-[ext_resource type="PackedScene" uid="uid://ly3n4ywnpm82" path="res://scenes/entities/enemies/easy_enemy.tscn" id="4_adi8m"]
+[ext_resource type="PackedScene" uid="uid://dyms4wvgonf18" path="res://scenes/entities/enemies/enemy.tscn" id="4_7jkud"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mx8sn"]
 vertices = PackedVector2Array(294, 150, 10, 150, 10, 10, 294, 10)
@@ -45,19 +45,26 @@ limit_bottom = 160
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy3" parent="Enemies" instance=ExtResource("4_adi8m")]
-position = Vector2(146, 63)
-movement = 2
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource("4_adi8m")]
-position = Vector2(47, 52)
+[node name="Enemy" parent="Enemies" instance=ExtResource("4_7jkud")]
+position = Vector2(49, 54)
 rotation = 1.5707964
-movement = 1
+difficulty = 1
 
-[node name="Enemy5" parent="Enemies" instance=ExtResource("4_adi8m")]
-position = Vector2(253, 53)
-rotation = -1.5707964
-movement = 1
+[node name="Enemy2" parent="Enemies" instance=ExtResource("4_7jkud")]
+position = Vector2(254, 54)
+rotation = 4.712389
+difficulty = 1
+
+[node name="Enemy6" parent="Enemies" instance=ExtResource("4_7jkud")]
+position = Vector2(145, 63)
+movement = 2
+difficulty = 2
+
+[node name="Enemy7" parent="Enemies" instance=ExtResource("4_7jkud")]
+position = Vector2(75, 102)
+
+[node name="Enemy8" parent="Enemies" instance=ExtResource("4_7jkud")]
+position = Vector2(216, 98)
 
 [node name="Pipe" parent="." instance=ExtResource("3_gxyiv")]
 position = Vector2(152, 145)

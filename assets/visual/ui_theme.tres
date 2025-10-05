@@ -3,4 +3,4 @@
 [resource]
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/constants/outline_size = 16
-RichTextLabel/font_sizes/normal_font_size = 64
+RichTextLabel/font_sizes/normal_font_size = 32

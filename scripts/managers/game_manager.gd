@@ -8,6 +8,9 @@ class_name GameManager extends Node
 @onready var music_manager: MusicManager = $UI_Layer/MusicManager
 @onready var load_manager: LoadManager = $UI_Layer/LoadManager
 
+var enemy_movements: Dictionary[Enemy, Enemy.MovementStates] = {}
+var shop_open: bool = false
+
 ##Hides every UI element and then quits the game
 func quit_game() -> void:
 	_hide_ui()
@@ -15,8 +18,14 @@ func quit_game() -> void:
 
 func finish_level(scene_path: String) -> void:
 	shop.open_shop()
+	shop_open = true
 	await shop.shop_closed
+	shop_open = false
 	load_scene(scene_path)
+
+func open_shop_in_endless_mode() -> void:
+	shop.open_shop()
+	shop_open = true
 
 ##Hides every UI element and then loads the selected scene
 func load_scene(scene_path: String) -> void:
@@ -42,3 +51,21 @@ func _hide_ui() -> void:
 	for child: Node in ui_layer.get_children():
 		if child is Control:
 			child.hide()
+
+func freeze_enemies_in_endless_mode() -> void:
+	for enemy: Enemy in StatManagerGlobal.current_level.enemies.get_children():
+		enemy_movements.set(enemy, enemy.movement) 
+		enemy.movement = Enemy.MovementStates.STILL
+
+func unfreeze_enemies_in_endless_mode() -> void:
+	for enemy: Enemy in StatManagerGlobal.current_level.enemies.get_children():
+		if enemy_movements.has(enemy):
+			enemy.movement = enemy_movements.get(enemy)
+	enemy_movements.clear()
+
+func slushie_freeze_enemies() -> void:
+	freeze_enemies_in_endless_mode()
+	
+	await get_tree().create_timer(5).timeout
+	
+	unfreeze_enemies_in_endless_mode()

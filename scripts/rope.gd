@@ -64,10 +64,8 @@ func add_knot_to_rope(knot_position: Vector2) -> void:
 	fixated_knot_collision_shape.shape = rope_collision
 	
 	rope_body.add_child(fixated_knot_collision_shape)
-	print(points)
 	for child: CollisionShape2D in rope_body.get_children():
 		var segment: SegmentShape2D = child.shape
-		print(segment.a, segment.b)
 
 func determine_dead_hook_position(dead_hook: DeadHook) -> Vector2:
 	var new_position: Vector2 = dead_hook.global_position

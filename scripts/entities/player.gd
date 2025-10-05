@@ -21,6 +21,18 @@ func _ready() -> void:
 		path_follow.add_child(SHIELD.instantiate())
 		await get_tree().create_timer(.5).timeout
 
+func add_shield() -> void:
+	for child: PathFollow2D in shield_radius.get_children():
+		child.queue_free()
+	
+	for i: int in range(0,StatManagerGlobal.shield_pieces):
+		var path_follow: PathFollow2D = PathFollow2D.new()
+		shield_radius.add_child(path_follow)
+		path_follow.add_child(SHIELD.instantiate())
+		await get_tree().create_timer(.5).timeout
+
+
+
 func _process(delta: float) -> void:
 	for path_follow: PathFollow2D in shield_radius.get_children():
 		path_follow.progress_ratio += 0.1 * delta
@@ -37,7 +49,9 @@ func _physics_process(_delta: float) -> void:
 ##Applies player movement for a given input and returns "true" afterwards.
 ##Returns false if no movement has been applied.
 func _player_movement() -> bool:
-	if Input.is_action_pressed("walk_up"):
+	if GameManagerGlobal.shop_open:
+		return false
+	elif Input.is_action_pressed("walk_up"):
 		velocity = Vector2(0, -speed)
 		animated_sprite.play("walk_up")
 		interaction_ray_cast.target_position = Vector2(0,-15)
@@ -68,6 +82,12 @@ func _input(event: InputEvent) -> void:
 			StatManagerGlobal.depleted_rope = 0
 			StatManagerGlobal.depleted_pins = 0
 	
+	if event.is_action_pressed("Freeze") and StatManagerGlobal.slushies > 0:
+		StatManagerGlobal.slushies -= 1
+		GameManagerGlobal.slushie_freeze_enemies()
+
+			
+	
 	if event.is_action_pressed("interact") and can_make_rope:
 		var interactor: Node = interaction_ray_cast.get_collider()
 		if current_rope == null:
@@ -88,8 +108,8 @@ func _input(event: InputEvent) -> void:
 
 func _on_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:
-		if StatManagerGlobal.hp > 0:
-			StatManagerGlobal.hp -= body.damage
+		if StatManagerGlobal.hp - StatManagerGlobal.depleted_hp > 0:
+			StatManagerGlobal.depleted_hp += body.damage
 		else:
 			get_parent().lost.emit()
 			GameManagerGlobal.quit_game()

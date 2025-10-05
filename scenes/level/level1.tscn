@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://csea0f6t8x3mk" path="res://assets/visual/wall_tile_set.tres" id="2_1ob00"]
 [ext_resource type="PackedScene" uid="uid://dlukhtdc5xlsr" path="res://scenes/entities/player.tscn" id="2_mg8dc"]
 [ext_resource type="PackedScene" uid="uid://cauuyn3ddtg0p" path="res://scenes/pipe.tscn" id="3_1ob00"]
-[ext_resource type="PackedScene" uid="uid://ly3n4ywnpm82" path="res://scenes/entities/enemies/easy_enemy.tscn" id="4_wpisc"]
+[ext_resource type="PackedScene" uid="uid://dyms4wvgonf18" path="res://scenes/entities/enemies/enemy.tscn" id="4_mg8dc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mx8sn"]
 vertices = PackedVector2Array(294, 150.03125, 10, 150.96094, 10, 10, 294, 10)
@@ -45,16 +45,19 @@ limit_bottom = 160
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy3" parent="Enemies" instance=ExtResource("4_wpisc")]
-position = Vector2(146, 63)
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource("4_wpisc")]
-position = Vector2(40, 94)
+[node name="Enemy" parent="Enemies" instance=ExtResource("4_mg8dc")]
+position = Vector2(46, 106)
 movement = 2
+difficulty = 1
 
-[node name="Enemy5" parent="Enemies" instance=ExtResource("4_wpisc")]
-position = Vector2(252, 47)
+[node name="Enemy2" parent="Enemies" instance=ExtResource("4_mg8dc")]
+position = Vector2(265, 35)
 movement = 2
+difficulty = 1
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("4_mg8dc")]
+position = Vector2(147, 67)
+difficulty = 1
 
 [node name="Pipe" parent="." instance=ExtResource("3_1ob00")]
 position = Vector2(152, 145)

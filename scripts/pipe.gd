@@ -23,4 +23,5 @@ func _on_area_body_entered(body: Node2D) -> void:
 		StatManagerGlobal.coins += body.worth
 		body.free()
 		if get_parent().enemies.get_children().is_empty():
-			get_parent().won.emit()
+			if get_parent() is Level and get_parent() is not EndlessMode:
+				get_parent().won.emit()

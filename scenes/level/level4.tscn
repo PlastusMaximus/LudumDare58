@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://lfi2078q2ego"]
+[gd_scene load_steps=8 format=4 uid="uid://lfi2078q2ego"]
 
 [ext_resource type="Script" uid="uid://cmksndmgxqlw8" path="res://scripts/level.gd" id="1_8ul8o"]
 [ext_resource type="PackedScene" uid="uid://dlukhtdc5xlsr" path="res://scenes/entities/player.tscn" id="2_nw7tt"]
 [ext_resource type="PackedScene" uid="uid://cauuyn3ddtg0p" path="res://scenes/pipe.tscn" id="3_nfir4"]
-[ext_resource type="PackedScene" uid="uid://ly3n4ywnpm82" path="res://scenes/entities/enemies/easy_enemy.tscn" id="4_0qist"]
-[ext_resource type="PackedScene" uid="uid://cbupi3bem1eoe" path="res://scenes/entities/enemies/medium_enemy.tscn" id="5_7vktd"]
 [ext_resource type="TileSet" uid="uid://csea0f6t8x3mk" path="res://assets/visual/wall_tile_set.tres" id="6_njhdo"]
+[ext_resource type="PackedScene" uid="uid://dyms4wvgonf18" path="res://scenes/entities/enemies/enemy.tscn" id="6_pjvq8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mx8sn"]
 vertices = PackedVector2Array(390, 214.96875, 10, 214.02344, 10, 10, 390, 10)
@@ -46,31 +45,35 @@ limit_bottom = 224
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("4_0qist")]
-position = Vector2(43, 40)
+[node name="Enemy3" parent="Enemies" instance=ExtResource("6_pjvq8")]
+position = Vector2(59, 179)
+movement = 2
+difficulty = 2
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource("4_0qist")]
-position = Vector2(354, 52)
+[node name="Enemy4" parent="Enemies" instance=ExtResource("6_pjvq8")]
+position = Vector2(42, 38)
+difficulty = 1
 
-[node name="MediumEnemy" parent="Enemies" instance=ExtResource("5_7vktd")]
-position = Vector2(139, 46)
+[node name="Enemy5" parent="Enemies" instance=ExtResource("6_pjvq8")]
+position = Vector2(137, 48)
 movement = 1
 
-[node name="MediumEnemy2" parent="Enemies" instance=ExtResource("5_7vktd")]
-position = Vector2(274, 48)
+[node name="Enemy6" parent="Enemies" instance=ExtResource("6_pjvq8")]
+position = Vector2(203, 110)
+movement = 2
+difficulty = 2
+
+[node name="Enemy7" parent="Enemies" instance=ExtResource("6_pjvq8")]
+position = Vector2(276, 49)
 movement = 1
 
-[node name="MediumEnemy3" parent="Enemies" instance=ExtResource("5_7vktd")]
-position = Vector2(327, 164)
+[node name="Enemy8" parent="Enemies" instance=ExtResource("6_pjvq8")]
+position = Vector2(328, 164)
 movement = 2
 
-[node name="MediumEnemy4" parent="Enemies" instance=ExtResource("5_7vktd")]
-position = Vector2(60, 178)
-movement = 2
-
-[node name="MediumEnemy5" parent="Enemies" instance=ExtResource("5_7vktd")]
-position = Vector2(204, 108)
-movement = 2
+[node name="Enemy9" parent="Enemies" instance=ExtResource("6_pjvq8")]
+position = Vector2(354, 53)
+difficulty = 1
 
 [node name="Pipe" parent="." instance=ExtResource("3_nfir4")]
 position = Vector2(200, 209)

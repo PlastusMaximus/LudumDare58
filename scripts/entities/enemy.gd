@@ -7,16 +7,27 @@ enum MovementStates {
 	COLLECTED
 }
 
+enum Difficulty {
+	TUTORIAL,
+	EASY,
+	MEDIUM,
+	HARD
+}
 
-@export var speed: int = 150
+
+
 @export var collection_speed: int = 300
-@export var damage: int = 1
-@export var worth: int = 1
+
 @export var movement: MovementStates = MovementStates.STILL
+@export var difficulty: Difficulty = Difficulty.TUTORIAL
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+
+var speed: int = 150
+var damage: int = 1
+var worth: int = 1
 
 var level: Level
 var pipe: Pipe
@@ -27,8 +38,9 @@ func _ready() -> void:
 	level = get_parent().get_parent()
 	pipe = get_tree().get_first_node_in_group("Pipe")
 	player = get_tree().get_first_node_in_group("Player")
-	if level.randomized_spawn:
-		global_position = Vector2(randi_range(0,1920), randf_range(0,1080))
+	apply_difficulty()
+	if level is EndlessMode:
+		global_position = Vector2(randi_range(16,464), randf_range(16,266))
 	hover = hover_tween().set_loops(100)
 
 func _process(delta: float) -> void:
@@ -81,6 +93,30 @@ func hover_tween() ->  Tween:
 	
 	return tween
 
+func apply_difficulty() -> void:
+	match difficulty:
+		Difficulty.TUTORIAL:
+			speed = 10
+			damage = 0
+			worth = 1
+			animated_sprite.play("tutorial")
+		Difficulty.EASY:
+			speed = 50
+			damage = 1
+			worth = 1
+			animated_sprite.play("easy")
+		Difficulty.MEDIUM:
+			scale = Vector2(2,2)
+			speed = 75
+			damage = 2
+			worth = 2
+			animated_sprite.play("medium")
+		Difficulty.HARD:
+			scale = Vector2(2.5,2.5)
+			speed = 100
+			damage = 3
+			worth = 3
+			animated_sprite.play("hard")
 
 func _on_collision_area_body_entered(_sbody: Node2D) -> void:
 	rotation_degrees += randi_range(135,225)
