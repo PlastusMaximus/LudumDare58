@@ -18,139 +18,140 @@ const SHIELD = preload("uid://dociya2ut45li")
 var current_rope: Rope
 
 func _ready() -> void:
-	rope_label.hide()
-	pin_label.hide()
-	for i: int in range(0,StatManagerGlobal.shield_pieces):
-		var path_follow: PathFollow2D = PathFollow2D.new()
-		shield_radius.add_child(path_follow)
-		path_follow.add_child(SHIELD.instantiate())
-		await get_tree().create_timer(.5).timeout
+    rope_label.hide()
+    pin_label.hide()
+    for i: int in range(0,StatManagerGlobal.shield_pieces):
+        var path_follow: PathFollow2D = PathFollow2D.new()
+        shield_radius.add_child(path_follow)
+        path_follow.add_child(SHIELD.instantiate())
+        await get_tree().create_timer(.5).timeout
 
 func add_shield() -> void:
-	for child: PathFollow2D in shield_radius.get_children():
-		child.queue_free()
-	
-	for i: int in range(0,StatManagerGlobal.shield_pieces):
-		var path_follow: PathFollow2D = PathFollow2D.new()
-		shield_radius.add_child(path_follow)
-		path_follow.add_child(SHIELD.instantiate())
-		await get_tree().create_timer(.5).timeout
+    for child: PathFollow2D in shield_radius.get_children():
+        child.queue_free()
+    
+    for i: int in range(0,StatManagerGlobal.shield_pieces):
+        var path_follow: PathFollow2D = PathFollow2D.new()
+        shield_radius.add_child(path_follow)
+        path_follow.add_child(SHIELD.instantiate())
+        await get_tree().create_timer(.5).timeout
 
 
 
 func _process(delta: float) -> void:
-	for path_follow: PathFollow2D in shield_radius.get_children():
-		path_follow.progress_ratio += 0.1 * delta
-	
-	if StatManagerGlobal.depleted_rope > 0:
-		rope_label.text = "Rope: " + str(round(StatManagerGlobal.rope - StatManagerGlobal.depleted_rope) / 100) + "m"
-		rope_label.show()
-	else:
-		rope_label.hide()
-	
-	if StatManagerGlobal.depleted_pins > 0:
-		pin_label.text = "Pins: " + str(StatManagerGlobal.pins - StatManagerGlobal.depleted_pins)
-		pin_label.show()
-	else:
-		pin_label.hide()
+    for path_follow: PathFollow2D in shield_radius.get_children():
+        path_follow.progress_ratio += 0.1 * delta
+    
+    if StatManagerGlobal.depleted_rope > 0:
+        rope_label.text = "Rope: " + str(round(StatManagerGlobal.rope - StatManagerGlobal.depleted_rope) / 100) + "m"
+        rope_label.show()
+    else:
+        rope_label.hide()
+    
+    if StatManagerGlobal.depleted_pins > 0:
+        pin_label.text = "Pins: " + str(StatManagerGlobal.pins - StatManagerGlobal.depleted_pins)
+        pin_label.show()
+    else:
+        pin_label.hide()
 
 func _physics_process(_delta: float) -> void:
-	if _player_movement():
-		move_and_slide()
-	else:
-		velocity = Vector2.ZERO
-		if not GameManagerGlobal.dialogue_box_open:
-			animated_sprite.play("idle")
+    if _player_movement():
+        move_and_slide()
+    else:
+        velocity = Vector2.ZERO
+        if not GameManagerGlobal.dialogue_box_open:
+            animated_sprite.play("idle")
 
 ##Applies player movement for a given input and returns "true" afterwards.
 ##Returns false if no movement has been applied.
 func _player_movement() -> bool:
-	if GameManagerGlobal.shop_open or GameManagerGlobal.dialogue_box_open:
-		return false
-	if StatManagerGlobal.depleted_rope >= StatManagerGlobal.rope:
-		position = current_rope.points.get(current_rope.points.size()-2)
-		return false
-	elif Input.is_action_pressed("walk_up"):
-		velocity = Vector2(0, -speed)
-		animated_sprite.play("walk_up")
-		interaction_ray_cast.target_position = Vector2(0,-15)
-		return true
-	elif Input.is_action_pressed("walk_down"):
-		velocity = Vector2(0, speed)
-		animated_sprite.play("walk_down")
-		interaction_ray_cast.target_position = Vector2(0,15)
-		return true
-	elif Input.is_action_pressed("walk_left"):
-		velocity = Vector2(-speed, 0)
-		animated_sprite.play("walk_left")
-		interaction_ray_cast.target_position = Vector2(-10, 0)
-		return true
-	elif Input.is_action_pressed("walk_right"):
-		velocity = Vector2(speed, 0)
-		animated_sprite.play("walk_right")
-		interaction_ray_cast.target_position = Vector2(10, 0)
-		return true
-	return false
+    if GameManagerGlobal.shop_open or GameManagerGlobal.dialogue_box_open:
+        return false
+    if StatManagerGlobal.depleted_rope >= StatManagerGlobal.rope:
+        position = current_rope.points.get(current_rope.points.size()-2)
+        return false
+    elif Input.is_action_pressed("walk_up"):
+        velocity = Vector2(0, -speed)
+        animated_sprite.play("walk_up")
+        interaction_ray_cast.target_position = Vector2(0,-20)
+        return true
+    elif Input.is_action_pressed("walk_down"):
+        velocity = Vector2(0, speed)
+        animated_sprite.play("walk_down")
+        interaction_ray_cast.target_position = Vector2(0,20)
+        return true
+    elif Input.is_action_pressed("walk_left"):
+        velocity = Vector2(-speed, 0)
+        animated_sprite.play("walk_left")
+        interaction_ray_cast.target_position = Vector2(-20, 0)
+        return true
+    elif Input.is_action_pressed("walk_right"):
+        velocity = Vector2(speed, 0)
+        animated_sprite.play("walk_right")
+        interaction_ray_cast.target_position = Vector2(20, 0)
+        return true
+    return false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("cancel"):
-		if current_rope != null:
-			current_rope.rope_done = true
-			current_rope.free()
-			current_rope = null
-			StatManagerGlobal.depleted_rope = 0
-			StatManagerGlobal.depleted_pins = 0
-	
-	if event.is_action_pressed("Freeze") and StatManagerGlobal.slushies > 0:
-		StatManagerGlobal.slushies -= 1
-		GameManagerGlobal.slushie_freeze_enemies()
+    if event.is_action_pressed("cancel"):
+        if current_rope != null:
+            current_rope.rope_done = true
+            current_rope.free()
+            current_rope = null
+            StatManagerGlobal.depleted_rope = 0
+            StatManagerGlobal.depleted_pins = 0
+    
+    if event.is_action_pressed("Freeze") and StatManagerGlobal.slushies > 0:
+        StatManagerGlobal.slushies -= 1
+        GameManagerGlobal.slushie_freeze_enemies()
 
-			
-	
-	if event.is_action_pressed("interact") and can_make_rope:
-		var interactor: Node = interaction_ray_cast.get_collider()
-		if current_rope == null:
-			if interactor is DeadHook:
-				current_rope = ROPE.instantiate()
-				get_parent().add_child(current_rope)
-				current_rope.start_rope(interactor)
-		else:
-			if interactor is DeadHook:
-				if current_rope.start_side == interactor.side and (StatManagerGlobal.rope - StatManagerGlobal.depleted_rope) >= 0:
-					current_rope.end_rope(interactor)
-					current_rope = null
-				else:
-					current_rope.add_knot_to_rope(current_rope.determine_dead_hook_position(interactor))
-			elif interactor == null and StatManagerGlobal.pins - StatManagerGlobal.depleted_pins > 0:
-				current_rope.add_knot_to_rope(global_position)
-				StatManagerGlobal.depleted_pins += 1
+            
+    
+    if event.is_action_pressed("interact") and can_make_rope:
+        var interactor: Node = interaction_ray_cast.get_collider()
+        if current_rope == null:
+            if interactor is DeadHook:
+                current_rope = ROPE.instantiate()
+                get_parent().add_child(current_rope)
+                current_rope.start_rope(interactor)
+        else:
+            if interactor is DeadHook:
+                if current_rope.start_side == interactor.side and (StatManagerGlobal.rope - StatManagerGlobal.depleted_rope) >= 0:
+                    current_rope.end_rope(interactor)
+                    current_rope = null
+                else:
+                    current_rope.add_knot_to_rope(current_rope.determine_dead_hook_position(interactor))
+            elif interactor == null and StatManagerGlobal.pins - StatManagerGlobal.depleted_pins > 0:
+                current_rope.add_knot_to_rope(global_position)
+                StatManagerGlobal.depleted_pins += 1
 
 func _hurt_tween() -> Tween:
-	var tween: Tween = create_tween().set_loops(9)
-	tween.tween_property(self, "modulate", Color.RED, .1).set_trans(Tween.TRANS_LINEAR).from(Color.WHITE)
-	tween.tween_property(self, "modulate", Color.TRANSPARENT, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
-	tween.tween_property(self, "modulate", Color.WHITE, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
-	return tween
+    var tween: Tween = create_tween().set_loops(9)
+    tween.tween_property(self, "modulate", Color.RED, .1).set_trans(Tween.TRANS_LINEAR).from(Color.WHITE)
+    tween.tween_property(self, "modulate", Color.TRANSPARENT, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
+    tween.tween_property(self, "modulate", Color.WHITE, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
+    return tween
 
 func _die_tween() -> Tween:
-	var tween: Tween = create_tween().set_loops(9)
-	tween.tween_property(self, "modulate", Color.RED, .1).set_trans(Tween.TRANS_LINEAR).from(Color.WHITE)
-	tween.tween_property(self, "modulate", Color.TRANSPARENT, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
-	tween.tween_property(self, "modulate", Color.WHITE, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
-	
-	var die_tween: Tween = create_tween()
-	die_tween.tween_property(self, "scale", Vector2.ZERO, 1).set_trans(Tween.TRANS_LINEAR).from_current()
-	return die_tween
+    var tween: Tween = create_tween().set_loops(9)
+    tween.tween_property(self, "modulate", Color.RED, .1).set_trans(Tween.TRANS_LINEAR).from(Color.WHITE)
+    tween.tween_property(self, "modulate", Color.TRANSPARENT, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
+    tween.tween_property(self, "modulate", Color.WHITE, .1).set_trans(Tween.TRANS_LINEAR).from(Color.RED)
+    
+    var die_tween: Tween = create_tween()
+    die_tween.tween_property(self, "scale", Vector2.ZERO, 1).set_trans(Tween.TRANS_LINEAR).from_current()
+    return die_tween
 
 func _on_area_body_entered(body: Node2D) -> void:
-	if body is Enemy and invincible.is_stopped():
-		invincible.start()
-		_hurt_tween()
-		if StatManagerGlobal.hp - StatManagerGlobal.depleted_hp > 0:
-			StatManagerGlobal.depleted_hp += body.damage
-		else:
-			if current_rope != null:
-				current_rope.rope_done = true
-			await _die_tween().finished
-			get_parent().lost.emit()
-			GameManagerGlobal.finish_level(StatManagerGlobal.current_level.scene_file_path)
+    if body is Enemy and invincible.is_stopped():
+        invincible.start()
+        _hurt_tween()
+        if StatManagerGlobal.hp - StatManagerGlobal.depleted_hp - body.damage > 0:
+            StatManagerGlobal.depleted_hp += body.damage
+        else:
+            StatManagerGlobal.depleted_hp = StatManagerGlobal.hp
+            if current_rope != null:
+                current_rope.rope_done = true
+            await _die_tween().finished
+            get_parent().lost.emit()
+            GameManagerGlobal.finish_level(StatManagerGlobal.current_level.scene_file_path)
